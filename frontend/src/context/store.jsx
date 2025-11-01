@@ -30,7 +30,6 @@ export const StoreContextProvider = ({ children }) => {
       const response = await axios.get(`${url}/api/university/find/${id}`);
       if (response.data.success) {
         setCurrentUniveristy(response.data.university);
-
         getCampus(response.data.university._id.toString());
       } else {
         console.log(response.data.msg);

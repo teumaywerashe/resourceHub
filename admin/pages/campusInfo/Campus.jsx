@@ -1,12 +1,15 @@
 import React from "react";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { StoreContext } from "../../../frontend/src/context/store";
-import "./campus.css";
+import "./Campus.css";
 function Campus() {
-  const { campus, adminToken } = useContext(StoreContext);
+  const { campus, adminToken, getUniversity } = useContext(StoreContext);
 
-  console.log("campus", campus, "token", adminToken);
+  const uniId = localStorage.getItem("uniId");
+  useEffect(() => {
+    getUniversity(uniId);
+  }, []);
   return (
     <div className="campus-lists">
       <div className="campus-list">
@@ -22,7 +25,8 @@ function Campus() {
               <h1>{c.name}</h1>
             </li>
             <div className="department">
-              <p>departments</p> <button className="add-campus">+</button>
+              <p>departments</p>
+              <button className="button">+</button>
             </div>
             {Object.entries(c.departments).map(([key, value]) => (
               <ul key={key} className="department-lists">
@@ -31,10 +35,9 @@ function Campus() {
                   <span>lavel</span>
                   <button>add</button>
                   <button>delete</button>
-                </li> 
-                 <hr />
+                </li>
+                <hr />
               </ul>
-            
             ))}
           </ul>
         </div>

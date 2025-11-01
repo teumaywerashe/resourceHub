@@ -11,6 +11,7 @@ function UniversityInfo({ setShowLogin }) {
 
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
+  localStorage.setItems('uniId',id)
   const { getUniversity, currentUniversity, campus } = useContext(StoreContext);
 
   useEffect(() => {

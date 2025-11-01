@@ -38,10 +38,7 @@ function Navebar({ setShowLogin }) {
           <>
             {" "}
             <img className="pro-logo" src={assets.profile_icon} />
-            <button onClick={logout}><Logout />logout</button>
-            
-
-
+            <button onClick={logout}> logout</button>
           </>
         ) : (
           <button onClick={() => setShowLogin(true)} className="login-btn">
