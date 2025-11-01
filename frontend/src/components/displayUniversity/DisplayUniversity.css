@@ -1,0 +1,77 @@
+.display-university {
+    width: 100%;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: #f9fafb;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.display-university .display {
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #1a202c;
+}
+
+.display-each {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    gap: 1.5rem;
+    place-items: center;
+}
+
+.display-each>* {
+    flex: 0 1 220px;
+    /* cards have fixed width but can wrap */
+}
+
+
+/* Example hover/animation for child cards */
+
+.display-each>*:hover {
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+}
+
+
+/* Responsive tweaks */
+
+@media (max-width: 768px) {
+    .display-university {
+        width: 95%;
+        padding: 1rem;
+    }
+    .display-each {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+    .display-university .display {
+        font-size: 1.4rem;
+    }
+    .display-each {
+        gap: 1rem;
+    }
+    .display-each>* {
+        flex: 0 1 160px;
+    }
+}
+
+@media (max-width: 1040px) {
+    .display-each {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 1200px) {
+    .display-each {
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: center;
+        margin: auto auto;
+        justify-content: center;
+    }
+}
