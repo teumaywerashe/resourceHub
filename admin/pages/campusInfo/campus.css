@@ -1,34 +1,102 @@
 .campus-lists {
-    /* background-color: green; */
-    width: 100%;
-    padding: 10px;
+    width: 90%;
+    max-width: 800px;
+    margin: 30px auto;
+    font-family: Arial, sans-serif;
 }
 
 .campus-list {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    margin-bottom: 10px;
 }
 
-.department-lists {
+.campus-list h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.button {
     display: flex;
+    align-items: center;
+    gap: 5px;
+    /* space between icon and text */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+}
+
+.delete-btn:hover {
+    background-color: #a71d2a;
+}
+
+#campus-button {
+    padding: 10px;
+    font-size: 1.5rem;
+}
+
+.campus {
+    display: flex;
+    align-items: start;
     justify-content: space-between;
 }
 
- .department button {
-    background-color: green;
-    padding: 12px;
-    color: white;
-    cursor: pointer;
-    border-radius: 50%;
-}
-
-hr {
-    margin-top: 5px;
+.campus-name {
+    border: 1px solid black;
 }
 
 .department {
     display: flex;
-    text-align: center;
     justify-content: space-between;
+    align-items: center;
+    margin: 8px 0;
+}
+
+.department p {
+    font-weight: bold;
+}
+
+.department-lists {
+    list-style: none;
+    padding-left: 0;
+    margin: 5px 0;
+}
+
+.department-lists li {
+    display: flex;
+    align-items: start;
+    gap: 8px;
+    margin-bottom: 5px;
+}
+
+.department-lists li input {
+    padding: 5px 8px;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    flex: 1;
+}
+
+.department-lists li span {
+    font-size: 0.85rem;
+    color: #555;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 5px 0;
 }

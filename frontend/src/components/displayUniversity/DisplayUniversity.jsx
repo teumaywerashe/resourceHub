@@ -33,6 +33,7 @@ function DisplayUniversity({ generation }) {
                 key={index}
                 id={item._id}
                 index={index}
+                logo={`http://localhost:3000/uploads/${item.logo}`}
                 name={item.name}
                 image={item.logo}
               />

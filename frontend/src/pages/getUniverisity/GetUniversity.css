@@ -62,8 +62,8 @@
 /* Hero Section */
 
 .hero-section {
-    background: url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1500&q=80") no-repeat center center/cover;
-    height: 90vh;
+    background: no-repeat center center/cover;
+    height: 50vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,6 +77,12 @@
     background-color: rgba(0, 0, 0, 0.55);
 }
 
+.overlay img {
+    height: 50vh;
+    width: 80vw;
+    filter: brightness(50%);
+}
+
 .hero-text {
     position: relative;
     text-align: center;
@@ -87,9 +93,12 @@
 .hero-text h2 {
     font-size: 2.8rem;
     margin-bottom: 15px;
+    padding: 5px 10px;
+    display: inline-block;
 }
 
 .hero-text p {
+    display: inline-block;
     font-size: 1.1rem;
     margin-bottom: 20px;
 }

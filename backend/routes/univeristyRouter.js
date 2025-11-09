@@ -3,6 +3,7 @@ import {
     addUniversity,
     getSingleUniversity,
     getUniversity,
+    updateUniversity,
 } from "../controllers/universityControllers.js";
 import multer from "multer";
 export const universityRouter = express.Router();
@@ -16,7 +17,10 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-universityRouter.route("/add").post(upload.single("image"), addUniversity);
+
+
 
 universityRouter.route("/get").get(getUniversity);
 universityRouter.route("/find/:id").get(getSingleUniversity);
+universityRouter.route("/add").post(upload.single("logo"), addUniversity);
+universityRouter.route("/update/:id").patch(upload.single("logo"), updateUniversity);

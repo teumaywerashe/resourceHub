@@ -14,10 +14,10 @@
     gap: 20px;
 }
 
-
-/* .home-page {
-    display: flex;
-} */
+.app-content img {
+    height: 50%;
+    width: 100%;
+}
 
 a {
     text-decoration: none;
@@ -28,4 +28,10 @@ hr {
     border: none;
     height: 1px;
     background-color: #9a9a9a;
+}
+
+@media (max-width:600px) {
+    .side {
+        display: none;
+    }
 }

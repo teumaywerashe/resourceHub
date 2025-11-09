@@ -2,15 +2,16 @@ import basket_icon from "./basket_icon.png";
 import logo from "./logo.png";
 import header_img from "./header_img.png";
 import search_icon from "./search_icon.png";
-import resource from './resource.png'
-import info from './info.png'
+import resource from "./resource.png";
+import info from "./info.png";
 
 import first_generation from "./first-generation.png";
 import second_generation from "./second-generation.png";
 import third_generation from "./third-generation.png";
 import fourth_generation from "./fourth-generation.png";
+import Private from './private.jpg'
 
-import resourceHub from './resourceHub.png'
+import resourceHub from "./resourceHub.png";
 
 import add_icon_white from "./add_icon_white.png";
 import add_icon_green from "./add_icon_green.png";
@@ -27,8 +28,7 @@ import profile_icon from "./profile_icon.png";
 import bag_icon from "./bag_icon.png";
 import logout_icon from "./logout_icon.png";
 import parcel_icon from "./parcel_icon.png";
-import upload_area from "./upload_area.png"
-
+import upload_area from "./upload_area.png";
 
 export const assets = {
     logo,
@@ -57,7 +57,7 @@ export const assets = {
     first_generation,
     second_generation,
     third_generation,
-    fourth_generation
+    fourth_generation,
 };
 
 export const generation_list = [{
@@ -76,5 +76,8 @@ export const generation_list = [{
         name: "Fourth Generation",
         image: fourth_generation,
     },
-
+    {
+        name: "Private",
+        image: Private,
+    },
 ];

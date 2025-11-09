@@ -1,30 +1,37 @@
-import React from "react";
-
+import React, { useContext, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import "./UniversityInfo.css";
-import { useContext } from "react";
 import { StoreContext } from "../../../frontend/src/context/store";
-import { useEffect } from "react";
+import "./UniversityInfo.css";
+import { assets } from "../../../frontend/src/asset/assets";
+import { Repeat } from "lucide-react";
 
 function UniversityInfo({ setShowLogin }) {
   const adminToken = localStorage.getItem("adminToken");
 
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
-  localStorage.setItems('uniId',id)
-  const { getUniversity, currentUniversity, campus } = useContext(StoreContext);
+
+  const { getUniversity, url, currentUniversity, campus } =
+    useContext(StoreContext);
 
   useEffect(() => {
     getUniversity(id);
   }, []);
 
   return adminToken ? (
-    <div id="#home" className="uni-info">
-      <section id="home" className="hero-section">
-        <div className="overlay"></div>
+    <div id="home" className="uni-info">
+      <section
+        className="hero-section"
+        style={{
+          backgroundImage: `url(${url}/uploads/${currentUniversity.logo})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+        }}
+      >
         <div className="hero-text">
           <h2>Welcome to {currentUniversity.name}</h2>
-          <p>{currentUniversity.description}</p>
+          {/* <p>{currentUniversity.description}</p> */}
           <a href="#about" className="learn-more-btn">
             Learn More
           </a>
@@ -46,23 +53,17 @@ function UniversityInfo({ setShowLogin }) {
         <div className="faculty-grid">
           {campus.map((c, index) => (
             <div key={index} className="faculty-card">
-              <img
-                src="https://images.unsplash.com/photo-1581092334651-ddf26d9a0f3b?auto=format&fit=crop&w=600&q=60"
-                alt={`${c.name}`}
-              />
+              <img src={assets.header_img} alt={`${c.name}`} />
               <h4>{c.name}</h4>
               <p>
                 Join our {c.name} Faculty and become an innovator of the future.
               </p>
               <div>
-                {Object.entries(c.departments).map(([level, deptArray]) => (
-                  <div key={level}>
-                    <h3>{level} Programs</h3>
-                    <ul>
-                      {deptArray.map((dept, i) => (
-                        <li key={i}>{dept}</li>
-                      ))}
-                    </ul>
+                {Object.entries(c.departments).map(([level]) => (
+                  <div className="programs-link" key={level}>
+                    <a href={`?${level}`}>
+                      <p className="program">{level} Programs</p>
+                    </a>
                   </div>
                 ))}
               </div>
@@ -88,16 +89,16 @@ function UniversityInfo({ setShowLogin }) {
     </div>
   ) : (
     <div className="welcome-page">
-      <section id="home" className="hero-section">
-        <div className="overlay"></div>
+      <section className="hero-section">
+        <img src={assets.resourceHub} alt="Hero" className="hero-image" />
         <div className="hero-text">
-          <h2>Welcome to ....</h2>
+          <h2>Welcome to resource hub web</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore,
             debitis!
           </p>
           <button className="learn-more-btn" onClick={() => setShowLogin(true)}>
-            get started
+            Get Started
           </button>
         </div>
       </section>

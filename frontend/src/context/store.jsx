@@ -41,11 +41,11 @@ export const StoreContextProvider = ({ children }) => {
 
   const getCampus = async (campusId) => {
     try {
-      console.log(campusId);
+      // console.log(campusId);
       const response = await axios.get(`${url}/api/campus/find/${campusId}`);
       if (response.data.success) {
         setCampus(response.data.campus);
-        console.log(response.data.campus);
+        // console.log(response.data.campus);
       }
     } catch (error) {
       console.log(error);
@@ -68,6 +68,7 @@ export const StoreContextProvider = ({ children }) => {
         logOut,
         data,
         setData,
+        setCampus,
         campus,
         getUniversity,
       }}

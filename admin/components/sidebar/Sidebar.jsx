@@ -7,17 +7,28 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebar-options">
-        <NavLink to="/" className="sidebar-option">
-          <img src={assets.first_generation} alt="" />
-          <p>University Info</p>
+        <NavLink 
+          to="/add" 
+          className={({ isActive }) => isActive ? "sidebar-option active" : "sidebar-option"}
+        >
+          <img src={assets.first_generation} alt="Update University" />
+          <p>Update University</p>
         </NavLink>
-        <NavLink to="/campus" className="sidebar-option">
-          <img src={assets.third_generation} alt="" />
-          <p>Campus Info</p>
+
+        <NavLink 
+          to="/campus" 
+          className={({ isActive }) => isActive ? "sidebar-option active" : "sidebar-option"}
+        >
+          <img src={assets.third_generation} alt="Update Campuses" />
+          <p>Update Campuses</p>
         </NavLink>
-        <NavLink to="/resources" className="sidebar-option">
-          <img src={assets.second_generation} alt="" />
-          <p>Resorces</p>
+
+        <NavLink 
+          to="/resources" 
+          className={({ isActive }) => isActive ? "sidebar-option active" : "sidebar-option"}
+        >
+          <img src={assets.second_generation} alt="Resources" />
+          <p>Resources</p>
         </NavLink>
       </div>
     </div>

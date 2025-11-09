@@ -25,12 +25,18 @@
 
 .explore-menu-list {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     justify-content: center;
     gap: 1.5rem;
     margin-top: 2rem;
     margin-bottom: 2rem;
     place-items: center;
+}
+
+@media(max-width:1200px) {
+    .explore-menu-list {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 }
 
 @media(max-width:900px) {

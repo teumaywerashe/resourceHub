@@ -1,55 +1,30 @@
 import React from "react";
 import UniNav from "../../components/uniNav/UniNav";
 import { useSearchParams } from "react-router-dom";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { StoreContext } from "../../context/store";
 
 import "./GetUniversity.css";
-import axios from "axios";
+
 function GetUni() {
-  const {  url } = useContext(StoreContext);
+  const { url } = useContext(StoreContext);
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
 
-  const [currentUniversity, setCurrentUniveristy] = useState({});
-  const [campus, setCampus] = useState([]);
+  const { currentUniversity, getUniversity, campus } = useContext(StoreContext);
 
-  const getCampus = async () => {
-    try {
-      const response = await axios.get(`${url}/api/campus/find/${id}`);
-      if (response.data.success) {
-        setCampus(response.data.campus);
-        console.log(response.data.campus);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getUniversity = async (id) => {
-    try {
-      const response = await axios.get(`${url}/api/university/find/${id}`);
-      if (response.data.success) {
-        // console.log(response.data.university);
-        return setCurrentUniveristy(response.data.university);
-      } else {
-        console.log(response.data.msg);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
   useEffect(() => {
     getUniversity(id);
-    console.log(currentUniversity)
-    getCampus();
+    console.log(currentUniversity);
   }, []);
   return (
     <div className="each-uni">
       <UniNav />
       <div className="uni-info">
         <section id="home" className="hero-section">
-          <div className="overlay"></div>
+          <div className="overlay">
+            <img src={`${url}/uploads/${currentUniversity.logo}`} alt="logo" />
+          </div>
           <div className="hero-text">
             <h2>Welcome to {currentUniversity.name}</h2>
             <p>
@@ -77,7 +52,7 @@ function GetUni() {
           <h3>Faculties</h3>
 
           <div className="faculty-grid">
-            {campus.map((c,index) => (
+            {campus.map((c, index) => (
               <div key={index} className="faculty-card">
                 <img
                   src="https://images.unsplash.com/photo-1588776814546-ec7d9c5b24b1?auto=format&fit=crop&w=600&q=60"
