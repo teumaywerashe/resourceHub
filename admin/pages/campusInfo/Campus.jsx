@@ -5,10 +5,50 @@ import "./Campus.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 function Campus() {
   const { campus, setCampus, getUniversity, url } = useContext(StoreContext);
+  const [department, setDepartment] = useState({});
+
+  const [level, setLevel] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(department, level);
+  });
+  const deleteDepartment = async (camp, ind, lev, campId) => {
+    try {
+      const response = await axios.get(`${url}/api/campus/find/${campId}`);
+
+      if (response.data.success) {
+        const currentCampus = response.data.campus;
+        const departmentsCopy = { ...currentCampus.departments };
+
+        const updatedLevel = departmentsCopy[lev].filter((_, i) => i !== ind);
+
+        departmentsCopy[lev] = updatedLevel;
+
+        setCampus((prev) =>
+          prev.map((c) =>
+            c._id === campId ? { ...c, departments: departmentsCopy } : c
+          )
+        );
+
+        const res = await axios.patch(`${url}/api/campus/update/${campId}`, {
+          departments: departmentsCopy,
+        });
+
+        if (res.data.success) toast.success("Department deleted successfully");
+        else toast.error(res.data.msg);
+      } else {
+        toast.error(response.data.msg);
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Error deleting department");
+    }
+  };
 
   const deleteCampus = async (id) => {
     try {
@@ -46,11 +86,11 @@ function Campus() {
         </button>
       </div>
 
-      {campus.map((c, i) => (
+      {campus?.map((c, i) => (
         <div key={i}>
           <ul key={c._id}>
-            <li className="campus campus-name">
-              <h1 className="">{c.name}</h1>
+            <li className="campus ">
+              <h1 className="campus-name">{c.name}</h1>
               <button
                 onClick={() => {
                   deleteCampus(c._id);
@@ -61,22 +101,41 @@ function Campus() {
               </button>
             </li>
             <div className="department">
-              <h2>departments</h2>
+              <h2>Programs</h2>
             </div>
-            {Object.entries(c.departments).map(
+            {Object.entries(c.departments)?.map(
               ([key, value]) =>
                 value.length > 0 && (
                   <>
-                    <h3>{key} Programs</h3>
-                    <ul className="department-lists">
-                      {value.map((dept, i) => (
+                    <h3 className="program">{key} Programs</h3>
+                    <ul key={key} className="department-lists">
+                      {value?.map((dept, i) => (
                         <li key={i}>
                           <input type="text" value={dept} readOnly />
-
-                          <button className="button">
-                            <Plus size={14} /> add
+                          <button
+                            onClick={() =>
+                              navigate(`/addResource?dept=${dept}&id=${c._id}`)
+                            }
+                            className="button"
+                          >
+                            <Plus size={14} /> cource
                           </button>
-                          <button className="button delete-btn">
+                          <button
+                            onClick={() =>
+                              navigate(
+                                `/addDep?level=${key}&index=${i}&dept=${dept}&id=${c._id}`
+                              )
+                            }
+                            className="button"
+                          >
+                            <Plus size={14} /> dep't
+                          </button>{" "}
+                          <button
+                            onClick={() =>
+                              deleteDepartment(c.name, i, key, c._id)
+                            }
+                            className="button delete-btn"
+                          >
                             <Trash2 size={14} /> delete
                           </button>
                         </li>

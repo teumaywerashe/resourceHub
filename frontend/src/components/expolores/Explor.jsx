@@ -9,7 +9,7 @@ function Explor({ generation, setGeneration }) {
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque nesciunt quaerat quos maxime possimus qui laudantium, atque quis dicta vel dolorum obcaecati consequuntur, eaque corporis aliquam. Unde odit molestias molestiae?
       </p>
       <div className="explore-menu-list">
-        {generation_list.map((item, index) => {
+        {generation_list?.map((item, index) => {
           return (
             <div
               onClick={() =>

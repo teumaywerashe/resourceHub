@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
 const universitySchema = mongoose.Schema({
-    name: {
+    logo: {
         type: String,
         required: true,
     },
-    logo: {
+    name: {
         type: String,
         required: true,
     },

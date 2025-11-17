@@ -21,17 +21,17 @@ function Footer() {
         <div className="footer-content-center">
           <h2>COMPANY</h2>
           <ul>
-            <li>home</li>
-            <li>universities</li> 
-            <li>resource</li>
-            <li>community</li>
+            <li><a href="">home</a></li>
+            <li><a href="">universities</a></li> 
+            <li><a href="">resource</a></li>
+            <li><a href="">community</a></li>
           </ul>
         </div>
         <div className="footer-content-right">
           <h2>GET IN TOUCH</h2>
           <ul>
-            <li>+25290009090</li>
-            <li>contact@uni.com</li>
+            <li><a href="">+25290009090</a></li>
+            <li><a href="">contact@uni.com</a></li>
           </ul>
         </div>
       </div>

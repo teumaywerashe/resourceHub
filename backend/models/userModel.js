@@ -6,5 +6,4 @@ const userSchema = mongoose.Schema({
 })
 
 
-//export const universityModel = mongoose.models.university || mongoose.model('university', universitySchema)
 export const userModel = mongoose.models.user || mongoose.model('user', userSchema)

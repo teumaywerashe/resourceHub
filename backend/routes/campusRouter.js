@@ -4,6 +4,7 @@ import {
     deleteCampus,
     getAllCampus,
     getCampus,
+    updateCampus,
 } from "../controllers/campusController.js";
 import multer from "multer";
 
@@ -23,5 +24,6 @@ const upload = multer({ storage: storage });
 campusRouter.route("/get").get(getAllCampus);
 campusRouter.route("/find/:id").get(getCampus);
 campusRouter.route("/delete/:id").delete(deleteCampus);
+campusRouter.route("/update/:id").patch(updateCampus);
 
 campusRouter.route("/add").post(upload.single("logo"), addCampus);

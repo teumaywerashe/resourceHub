@@ -6,6 +6,9 @@ export const StoreContext = createContext();
 
 export const StoreContextProvider = ({ children }) => {
   // const [showLogin, setShowLogin] = useState(true);
+  const [resources, setResources] = useState([]);
+  const [resource, setResource] = useState([]);
+
   const [userToken, setUserToken] = useState("");
   const [adminToken, setAdminToken] = useState("");
   const [universities, setUniversities] = useState([]);
@@ -30,7 +33,7 @@ export const StoreContextProvider = ({ children }) => {
       const response = await axios.get(`${url}/api/university/find/${id}`);
       if (response.data.success) {
         setCurrentUniveristy(response.data.university);
-        getCampus(response.data.university._id.toString());
+        getCampus(response.data.university?._id.toString());
       } else {
         console.log(response.data.msg);
       }
@@ -41,17 +44,38 @@ export const StoreContextProvider = ({ children }) => {
 
   const getCampus = async (campusId) => {
     try {
-      // console.log(campusId);
       const response = await axios.get(`${url}/api/campus/find/${campusId}`);
       if (response.data.success) {
         setCampus(response.data.campus);
-        // console.log(response.data.campus);
       }
     } catch (error) {
       console.log(error);
     }
   };
-
+  const getResources = async () => {
+    try {
+      const response = await axios.get(`${url}/api/resources/get`);
+      if (response.data.success) {
+        setResources(response.data.resources);
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const getResource = async (id) => {
+    try {
+      const response = await axios.get(`${url}/api/resource/get/${id}`);
+      if (response.data.success) {
+        setResource(response.data.resource);
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <StoreContext.Provider
       value={{
@@ -71,6 +95,10 @@ export const StoreContextProvider = ({ children }) => {
         setCampus,
         campus,
         getUniversity,
+        getResources,
+        resources,
+        getResource,
+        resource,
       }}
     >
       {children}

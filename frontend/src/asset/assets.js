@@ -4,6 +4,8 @@ import header_img from "./header_img.png";
 import search_icon from "./search_icon.png";
 import resource from "./resource.png";
 import info from "./info.png";
+import resources from './resources.png'
+import books from './books.svg'
 
 import first_generation from "./first-generation.png";
 import second_generation from "./second-generation.png";
@@ -30,8 +32,13 @@ import logout_icon from "./logout_icon.png";
 import parcel_icon from "./parcel_icon.png";
 import upload_area from "./upload_area.png";
 
+import admin from './admin.jpg'
+
 export const assets = {
     logo,
+    admin,
+    books,
+    resources,
     resource,
     resourceHub,
     info,

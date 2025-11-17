@@ -21,12 +21,12 @@ function DisplayUniversity({ generation }) {
     fetchUniversity();
   }, []);
   return (
-    <div className="display-university" id="university-display">
+    <div className="display-university"  id="universities" >
       <div>
         <h3 className="display">Your Bestes</h3>
       </div>
       <div className="display-each">
-        {data.map((item, index) => {
+        {data?.map((item, index) => {
           if (generation === "All" || generation === item.generation) {
             return (
               <DisplayEach

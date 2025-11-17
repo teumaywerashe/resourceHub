@@ -20,7 +20,4 @@ const upload = multer({ storage: storage });
 
 
 
-universityRouter.route("/get").get(getUniversity);
-universityRouter.route("/find/:id").get(getSingleUniversity);
-universityRouter.route("/add").post(upload.single("logo"), addUniversity);
-universityRouter.route("/update/:id").patch(upload.single("logo"), updateUniversity);
+universityRouter.get("/get", getUniversity).get("/find/:id", getSingleUniversity).post("/add", upload.single("logo"), addUniversity).patch("/update/:id", upload.single("logo"), updateUniversity);

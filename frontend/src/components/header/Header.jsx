@@ -3,7 +3,7 @@ import "./Header.css";
 import { assets } from "../../asset/assets";
 function Header() {
   return (
-    <div className="header">
+    <div id="home" className="header">
       <div className="header-overlay">
         <div className="header-image">
           <img src={assets.resourceHub} alt="" />

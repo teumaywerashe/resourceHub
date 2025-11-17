@@ -1,19 +1,20 @@
-import React, { useContext, useEffect, useState } from "react";
-import { LogOut } from "lucide-react";
+import React, { useContext, useEffect } from "react";
+
 import "./Navebar.css";
 import { assets } from "../../../frontend/src/asset/assets";
-
-import { useNavigate } from "react-router-dom";
+import { LogOutIcon } from "lucide-react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../../frontend/src/context/store";
 
 function Navebar({ setShowLogin }) {
   const navigate = useNavigate();
   const logoutProfile = () => {
+    console.log(uniId);
     localStorage.removeItem("adminToken");
     localStorage.removeItem("uniId");
-    navigate("/login");
+    navigate("/");
   };
-  const { getUniversity, currentUniversity } = useContext(StoreContext);
+  const { getUniversity, currentUniversity,LogOut } = useContext(StoreContext);
   const adminToken = localStorage.getItem("adminToken");
   // const [showLogOut, setShowLogOut] = useState(false);
   const uniId = localStorage.getItem("uniId");
@@ -30,7 +31,7 @@ function Navebar({ setShowLogin }) {
         </div>
         <div>
           {uniId ? (
-            <h1 className="uni-name">{currentUniversity.name}</h1>
+           <NavLink to='/'> <h1 className="uni-name">{currentUniversity?.name}</h1></NavLink>
           ) : (
             <></>
           )}
@@ -38,9 +39,9 @@ function Navebar({ setShowLogin }) {
         <div>
           {adminToken ? (
             <div className="profile">
-              <img className="pro-logo" src={assets.profile_icon} />
+              <img className="pro-logo" src={assets.admin} />
               <button onClick={logoutProfile} className="logout">
-                <LogOut />
+                <LogOutIcon />
                 logout
               </button>
             </div>

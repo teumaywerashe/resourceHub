@@ -74,8 +74,7 @@ export const updateUniversity = async(req, res) => {
             generation: req.body.generation,
             region: req.body.region,
         };
-        // console.log("File:", req.file);
-        // console.log("Body:", req.body);
+
         const university = await universityModel.findByIdAndUpdate(id, updateData, {
             new: true,
         });

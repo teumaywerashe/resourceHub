@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { StoreContext } from "../../context/store";
 
 function Login({ setShowLogin }) {
+  const [uniId, setUniId] = useState();
   const [currentState, setcurrentState] = useState("Login");
   const { setUserToken, url } = useContext(StoreContext);
 
@@ -33,6 +34,7 @@ function Login({ setShowLogin }) {
       if (response.data.success) {
         setUserToken(response.data.token);
         localStorage.setItem("token", response.data.token);
+        // localStorage.setItem('uniId',response.data.uniId)
         setShowLogin(false);
       } else {
         toast.error(response.data.msg);

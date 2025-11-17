@@ -1,15 +1,15 @@
 import React from "react";
-import { assets } from "../../asset/assets";
+// import { assets } from "../../asset/assets";
 import "./displayEach.css";
 import { useNavigate } from "react-router-dom";
 
-import { StoreContext } from "../../context/store";
+// import { StoreContext } from "../../context/store";
 function DisplayEach({ name, id, logo }) {
   const navigate = useNavigate();
 
   return (
     <div
-      id="universities"
+     
       onClick={() => {
         navigate(`/university?id=${id}`);
       }}

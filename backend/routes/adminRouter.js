@@ -1,12 +1,10 @@
 import express from "express";
 import {
-  getAdminUniversity,
-  loginAdmin,
-  registerAdmin,
+    getAdminUniversity,
+    loginAdmin,
+    registerAdmin,
 } from "../controllers/adminController.js";
 import { authMiddleware } from "../middleWares/auth.js";
 export const adminRouter = express.Router();
 
-adminRouter.route("/register").post(registerAdmin);
-adminRouter.route("/login").post(loginAdmin);
-adminRouter.route("/university").get(authMiddleware, getAdminUniversity);
+adminRouter.post("/register", registerAdmin).post("/login", loginAdmin).get("/university", authMiddleware, getAdminUniversity);

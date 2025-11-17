@@ -82,7 +82,7 @@ function AddCampus() {
 
       <div>
         <h4>Degree</h4>
-        {departments.degree.map((item, index) => (
+        {departments.degree?.map((item, index) => (
           <div key={index} className="input-display">
             <input
               type="text"
@@ -106,7 +106,7 @@ function AddCampus() {
       </div>
       <div>
         <h4>Diploma</h4>
-        {departments.diploma.map((item, index) => (
+        {departments.diploma?.map((item, index) => (
           <div key={index} className="input-display">
             <input
               type="text"
@@ -130,7 +130,7 @@ function AddCampus() {
 
       <div>
         <h4>Masters</h4>
-        {departments.masters.map((item, index) => (
+        {departments.masters?.map((item, index) => (
           <div key={index} className="input-display">
             <input
               type="text"
