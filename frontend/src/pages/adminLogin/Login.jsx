@@ -6,12 +6,11 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { assets } from "../../../frontend/src/asset/assets";
-import { StoreContext } from "../../../frontend/src/context/store";
-function Login({ showLogin, setShowLogin }) {
+import { assets } from "../../asset/assets";
+import { StoreContext } from "../../context/store";
+function AdminLogin({ showLogin, setShowLogin }) {
   const navigate = useNavigate();
   const { setAdminToken, url, getUniversity } = useContext(StoreContext);
-  // const adminToken = localStorage.getItem("adminToken");
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -270,4 +269,4 @@ function Login({ showLogin, setShowLogin }) {
   );
 }
 
-export default Login;
+export default AdminLogin;

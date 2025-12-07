@@ -1,6 +1,6 @@
 import express from 'express'
 import multer from 'multer'
-import { addNew, getNew, getNews } from '../controllers/newsController.js'
+import { addNew, getAllNews, getNew, getUniversityNews } from '../controllers/newsController.js'
 
 
 
@@ -17,4 +17,4 @@ const upload = multer({ storage: storage })
 export const newsRouter = express.Router()
 
 
-newsRouter.get('/get', getNews).get('/find/:id', getNew).post('/add', upload.single('image'), addNew)
+newsRouter.get('/get', getAllNews).get('/get/:id', getUniversityNews).get('/find/:id', getNew).post('/add', upload.single('image'), addNew)

@@ -13,7 +13,7 @@ function DisplayEach({ name, id, logo }) {
       onClick={() => {
         navigate(`/university?id=${id}`);
       }}
-      className="university-display"
+      className="university-display flex flex-col"
     >
       <div className="university-image">
         <img src={logo} alt="" />

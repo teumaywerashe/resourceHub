@@ -1,7 +1,7 @@
 import { newsModel } from "../models/newsModule.js";
 import { universityModel } from "../models/univeristyModel.js";
 
-export const getNews = async(req, res) => {
+export const getAllNews = async(req, res) => {
     try {
         const news = await newsModel.find({});
         if (news) {
@@ -14,7 +14,24 @@ export const getNews = async(req, res) => {
         res.status(500).json({ success: false, msg: "server Error" })
     }
 };
+export const getUniversityNews = async(req, res) => {
+    const { id } = req.params
+    try {
+        const uniNews = await newsModel.find({ uniId: id })
 
+        if (uniNews) {
+            res.status(200).json({ success: true, uniNews })
+        } else {
+            res.status(200).json({
+                succ: false,
+                msg: 'no news found for this university'
+            })
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, msg: 'server error' })
+    }
+}
 export const getNew = async(req, res) => {
     try {
         const { id } = req.params

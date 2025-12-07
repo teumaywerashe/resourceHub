@@ -22,20 +22,16 @@ function AddDep() {
       return;
     }
 
-    // Find campus to update
     const campusToUpdate = campus.find((c) => c._id === campusId);
     if (!campusToUpdate) {
       toast.error("Campus not found.");
       return;
     }
-
-    // Prepare updated departments
     const updatedDepartments = {
       ...campusToUpdate.departments,
       [level]: [...(campusToUpdate.departments[level] || []), newDept],
     };
 
-    // Update local state
     setCampus((prev) =>
       prev.map((c) =>
         c._id === campusId ? { ...c, departments: updatedDepartments } : c

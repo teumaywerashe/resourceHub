@@ -26,7 +26,7 @@ function App() {
         {showLogin && (
           <div className="login-page">
             <Login showLogin={showLogin} setShowLogin={setShowLogin} />
-          </div>
+          </div >
         )}
         <div className="home-page">
           <Navebar setShowLogin={setShowLogin} />

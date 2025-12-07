@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import Homes from "./pages/homes/Homes";
-import Login from "./pages/login/Login";
+
 import { Toaster } from "react-hot-toast";
 import { StoreContextProvider } from "./context/store";
 import Footer from "./components/footer/Footer";
@@ -12,7 +11,7 @@ import AddInfo from "../../admin/pages/addInfo/AddInfo";
 import Resource from "../../admin/pages/resource/Resource";
 import Campus from "../../admin/pages/campusInfo/Campus";
 import AddCampus from "../../admin/pages/addCampus/addCampus";
-import AddDepartment from "../../admin/pages/addDepartment/addDepartment";
+import AddDepartment from "../../admin/pages/addDepartment/AddDepartment";
 
 import AddResource from "../../admin/pages/addResource/AddResource";
 import PostNews from "../../admin/pages/postNews/PostNews";
@@ -20,18 +19,21 @@ import Navebar from "../../admin/components/navbar/Navebar";
 import Sidebar from "../../admin/components/sidebar/Sidebar";
 
 import { assets } from "./asset/assets";
+import Homes from "./pages/userHome/Homes";
+import AdminLogin from "./pages/adminLogin/Login";
+import UserLogin from "./pages/login/Login";
 function App() {
   const [showLogin, setShowLogin] = useState(false);
   const role = "user";
   const uniId = localStorage.getItem("uniId");
-  
+
   return (
     <StoreContextProvider>
       <div>
         <Toaster position="top-right" reverseOrder={false} />
         {role === "user" ? (
           <div className="app">
-            {showLogin && <Login setShowLogin={setShowLogin} />}
+            {showLogin && <UserLogin setShowLogin={setShowLogin} />}
             <Routes>
               <Route
                 path="/"
@@ -39,14 +41,13 @@ function App() {
               ></Route>
               <Route path="/university" element={<GetUni />}></Route>
             </Routes>
-            :
             <Footer />
           </div>
         ) : (
           <div className="app">
             {showLogin && (
               <div className="login-page">
-                <Login showLogin={showLogin} setShowLogin={setShowLogin} />
+                <AdminLogin showLogin={showLogin} setShowLogin={setShowLogin} />
               </div>
             )}
             <div className="home-page">
@@ -54,7 +55,6 @@ function App() {
               <hr />
               <div className="app-content">
                 <div className="side">
-                  {" "}
                   <Sidebar />
                 </div>
                 {uniId ? (

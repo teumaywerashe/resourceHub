@@ -7,7 +7,7 @@ import axios from "axios";
 import { useContext } from "react";
 import { StoreContext } from "../../context/store";
 
-function Login({ setShowLogin }) {
+function UserLogin({ setShowLogin }) {
   const [uniId, setUniId] = useState();
   const [currentState, setcurrentState] = useState("Login");
   const { setUserToken, url } = useContext(StoreContext);
@@ -32,9 +32,10 @@ function Login({ setShowLogin }) {
     const response = await axios.post(newUrl, data);
     try {
       if (response.data.success) {
+        console.log(response.data);
         setUserToken(response.data.token);
         localStorage.setItem("token", response.data.token);
-        // localStorage.setItem('uniId',response.data.uniId)
+        localStorage.setItem("uniId", response.data.uniId);
         setShowLogin(false);
       } else {
         toast.error(response.data.msg);
@@ -104,4 +105,4 @@ function Login({ setShowLogin }) {
   );
 }
 
-export default Login;
+export default UserLogin;

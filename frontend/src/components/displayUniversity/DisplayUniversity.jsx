@@ -13,7 +13,8 @@ function DisplayUniversity({ generation }) {
         "http://localhost:3000/api/university/get"
       );
       setData(response.data.uni);
-      console.log(response.data.uni);
+      console.log('response',response.data);
+      // console.log(response.data.uni);
     } catch (error) {
       console.log(error);
     }
@@ -22,7 +23,8 @@ function DisplayUniversity({ generation }) {
   useEffect(() => {
     fetchUniversity();
   }, []);
-  const filteredData = data.filter((d) => {
+  console.log(data);
+  const filteredData = data?.filter((d) => {
     return d.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
@@ -62,7 +64,7 @@ function DisplayUniversity({ generation }) {
         </div>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 justify-center items-center">
-        {filteredData.length > 0 ? (
+        {filteredData?.length > 0 ? (
           <>
             {filteredData.map((item, index) => {
               if (generation === "All" || generation === item.generation) {

@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from "react";
-import { NavLink, useSearchParams } from "react-router-dom";
+import React, { useContext,  } from "react";
+import { NavLink,  } from "react-router-dom";
 import { StoreContext } from "../../../frontend/src/context/store";
 import "./UniversityInfo.css";
 import { assets } from "../../../frontend/src/asset/assets";
@@ -7,14 +7,9 @@ import { assets } from "../../../frontend/src/asset/assets";
 function UniversityInfo({ setShowLogin }) {
   const adminToken = localStorage.getItem("adminToken");
 
-  // const [searchParams] = useSearchParams();
-  // const id = searchParams.get("id");
 
   const { url, currentUniversity, campus } = useContext(StoreContext);
 
-  // useEffect(() => {
-  //   getUniversity(id);
-  // }, []);
 
   return adminToken ? (
     <div id="home" className="uni-info">
@@ -29,7 +24,6 @@ function UniversityInfo({ setShowLogin }) {
       >
         <div className="hero-text">
           <h2>Welcome to {currentUniversity.name}</h2>
-          {/* <p>{currentUniversity.description}</p> */}
           <a href="#about" className="learn-more-btn">
             Learn More
           </a>

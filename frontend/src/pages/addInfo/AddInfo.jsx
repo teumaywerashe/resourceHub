@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { assets } from "../../../frontend/src/asset/assets";
 import { Upload, BookOpen, Calendar, MapPin } from "lucide-react";
-import "./AddInfo.css"; // Make sure this path is correct
+import "./AddInfo.css"; 
 import { StoreContext } from "../../../frontend/src/context/store";
 import axios from "axios";
 import toast from "react-hot-toast";

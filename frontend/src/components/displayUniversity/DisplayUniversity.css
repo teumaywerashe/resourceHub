@@ -1,4 +1,4 @@
-.display-university {
+/* .display-university {
     width: 100%;
     margin: 2rem auto;
     padding: 1.5rem;
@@ -25,11 +25,7 @@
 
 .display-each>* {
     flex: 0 1 220px;
-    /* cards have fixed width but can wrap */
 }
-
-
-/* Example hover/animation for child cards */
 
 .display-each>*:hover {
     transform: translateY(-5px);
@@ -71,4 +67,4 @@
         margin: auto auto;
         justify-content: center;
     }
-}
+} */

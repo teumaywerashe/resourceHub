@@ -119,12 +119,10 @@ div>input[type="text"] {
     background-color: #a71d2a;
 }
 
-div>div {
+
+/* div>div {
     margin-bottom: 20px;
-}
-
-
-/* Mobile responsive */
+} */
 
 @media (max-width: 600px) {
     form {

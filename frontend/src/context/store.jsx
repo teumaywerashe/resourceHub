@@ -14,6 +14,8 @@ export const StoreContextProvider = ({ children }) => {
   const [universities, setUniversities] = useState([]);
   const [university, setUniversity] = useState();
   const [url] = useState("http://localhost:3000");
+  const [news, setNews] = useState([]);
+  const [universityNews, setUniversityNews] = useState([]);
 
   const [data, setData] = useState({});
 
@@ -76,6 +78,16 @@ export const StoreContextProvider = ({ children }) => {
       console.log(error);
     }
   };
+
+  const getAllNews = async () => {
+    try {
+      const response = await axios.get(`${url}/api/news/get`);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <StoreContext.Provider
       value={{
@@ -98,7 +110,7 @@ export const StoreContextProvider = ({ children }) => {
         getResources,
         resources,
         getResource,
-        resource,
+        resource,getAllNews
       }}
     >
       {children}
