@@ -12,40 +12,38 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 function NewsDisplay() {
- const scrollRef = useRef(null);
-const [isRightScrollable, setIsRightScrollable] = useState(true);
-const [isLeftScrollable, setIsLeftScrollable] = useState(false);
+  const scrollRef = useRef(null);
+  const [isRightScrollable, setIsRightScrollable] = useState(true);
+  const [isLeftScrollable, setIsLeftScrollable] = useState(false);
 
-const scrollHandler = (amount) => {
-console.log(isLeftScrollable,isRightScrollable);
+  const scrollHandler = (amount) => {
+    console.log(isLeftScrollable, isRightScrollable);
 
-  if (scrollRef.current) {
-    scrollRef.current.scrollBy({
-      left: amount,
-      behavior: "smooth",
-    });
-  }
-};
-
-useEffect(() => {
-  const scroller = scrollRef.current;
-
-  if (!scroller) return;
-  const updateScrollState = () => {
-    const { scrollLeft, scrollWidth, offsetWidth } = scroller;
-    setIsLeftScrollable(scrollLeft > 0);
-
-    setIsRightScrollable(scrollLeft + offsetWidth < scrollWidth);
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: amount,
+        behavior: "smooth",
+      });
+    }
   };
 
- 
-  updateScrollState();
+  useEffect(() => {
+    const scroller = scrollRef.current;
 
-  
-  scroller.addEventListener("scroll", updateScrollState);
+    if (!scroller) return;
+    const updateScrollState = () => {
+      const { scrollLeft, scrollWidth, offsetWidth } = scroller;
+      setIsLeftScrollable(scrollLeft > 0);
 
-  return () => scroller.removeEventListener("scroll", updateScrollState);
-}, []);
+      setIsRightScrollable(scrollLeft + offsetWidth < scrollWidth);
+    };
+
+    updateScrollState();
+
+    scroller.addEventListener("scroll", updateScrollState);
+
+    return () => scroller.removeEventListener("scroll", updateScrollState);
+  }, []);
 
   const news = [
     {
@@ -118,22 +116,29 @@ useEffect(() => {
           Campus News & Announcements
         </h2>
       </div>
+     
 
-      <div className="flex relative z-600 gap-2 p-3 justify-end items-end">
+      <div className="hidden sm:flex justify-end relative z-1 gap-10 w-full h-full">
+        {/* Left Button */}
         <button
           onClick={() => scrollHandler(-300)}
-          className={`p-2 absolute left-0 rounded-full  bg-gray-200 hover:bg-gray-300  ${isLeftScrollable? "flex":"hidden"}`}
+          className={`sm:absolute p-2 m-2 -top-8 -right-10 sm:right-25  bg-white rounded-full shadow-md hover:bg-gray-200  -translate-y-1/2 ${
+            isLeftScrollable ? "flex " : "bg-[red]"
+          }`}
         >
           <ChevronLeft />
         </button>
 
         <button
           onClick={() => scrollHandler(300)}
-          className={`p-2 right-0 absolute bg-gray-200 hover:bg-gray-300 rounded-full ${isRightScrollable? "flex":"hidden"}`}
+          className={` -top-8 right-3 sm:right-10  sm:absolute p-2 m-2 bg-white rounded-full shadow-md hover:bg-gray-200 -translate-y-1/2 ${
+            isRightScrollable ? "flex" : "hidden"
+          }`}
         >
           <ChevronRight />
         </button>
       </div>
+   
       <div
         ref={scrollRef}
         className="relative px-4 overflow-scroll scrollbar-hide w-full"
@@ -143,13 +148,13 @@ useEffect(() => {
         <div className="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
 
         {/* The Sliding Track */}
-        <div className="flex w-max gap-8 hover:paused py-4">
+        <div className="flex-col sm:flex sm:flex-row w-max gap-8 hover:paused py-4">
           {/* animate-infinite-scroll */}
           {/* We render the list TWICE to create the seamless loop effect */}
           {[...news, ...news].map((item, index) => (
             <div
               key={index}
-              className="w-[320px] bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300 group flex-shrink-0"
+              className="w-[320px] bg-white rounded-2xl shadow-sm border mb-10 border-gray-300 overflow-hidden hover:shadow-xl transition-shadow duration-300 group flex-shrink-0"
             >
               {/* Image Area */}
               <div className="h-40 overflow-hidden relative">

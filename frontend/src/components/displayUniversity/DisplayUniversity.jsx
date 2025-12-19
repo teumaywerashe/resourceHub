@@ -63,7 +63,7 @@ function DisplayUniversity({ generation }) {
           />
         </div>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 justify-center items-center">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-16 justify-between items-center">
         {filteredData?.length > 0 ? (
           <>
             {filteredData.map((item, index) => {

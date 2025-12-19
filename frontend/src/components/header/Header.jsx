@@ -1,8 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { assets } from "../../asset/assets";
 import { ArrowRight, BookOpen, Users, Globe } from "lucide-react";
 
 function Header() {
+
+
+  const [numberUniversity,setNumberUniversity]=useState(0);
+  const [numberOfUser,setNumberOfUser]=useState(0)
+
+  const [resourceCount,setResourceCount]=useState(0);
+  useEffect(()=>{
+    const resourceInterval=setInterval(() => {
+      setResourceCount((  prev)=>{
+        if(prev>=10000){
+          clearInterval(resourceInterval);
+          return 10000;
+        }
+        return prev+1000;
+      })
+    }, 50);
+    return ()=>clearInterval(resourceInterval);
+  },[])
+
+
+  useEffect(()=>{
+    const universityInterval =setInterval(() => {
+      // setNumberOfUser((prev)=>prev+100);
+      setNumberUniversity((prev)=>{
+        if(prev>=50) {
+          clearInterval(universityInterval);
+          return 50;
+        }
+        return prev+5;
+      });
+    }, 50);
+    return ()=>clearInterval(universityInterval);
+  },[])
+
+  useEffect(()=>{
+    const userInterval =setInterval(() => {
+      setNumberOfUser((prev)=>{   
+        if(prev>=50000) {
+          clearInterval(userInterval);
+          return 50000;
+        }
+
+
+        return prev+1000;
+      });
+    }, 10);
+    return ()=>clearInterval(userInterval);
+  },[])
+
+
+  const formatNumber=(num)=>{
+    if(num>=1000){
+      return (num/1000).toFixed(1);
+    } 
+    return num;
+  }
+
+
   return (
     <header
       id="home"
@@ -22,13 +80,9 @@ function Header() {
       </div>
 
       {/* --- CONTENT LAYER --- */}
-      <div className="relative z-10 container mx-auto px-6 md:px-12 flex flex-col justify-center h-full">
+      <div className="relative z-10 container -mb-20 mx-auto px-6 md:px-12 flex items-center flex-col justify-center h-full">
         <div className="max-w-3xl animate-fade-in-up">
-          {/* Tagline Badge */}
-          <div className="inline-flex text-black items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 border border-indigo-400/30 backdrop-blur-md text-xs font-semibold uppercase tracking-wider mb-6">
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-            The #1 Resource Hub for Ethiopian Students
-          </div>
+         
 
           {/* Main Headline */}
           <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 tracking-tight">
@@ -68,7 +122,7 @@ function Header() {
               <Globe size={24} />
             </div>
             <div>
-              <p className="text-2xl font-bold text-white">45+</p>
+              <p className="text-2xl font-bold text-white">{formatNumber(numberUniversity)}+</p>
               <p className="text-xs text-gray-400 uppercase tracking-wide">
                 Universities
               </p>
@@ -80,7 +134,7 @@ function Header() {
               <BookOpen size={24} />
             </div>
             <div>
-              <p className="text-2xl font-bold text-white">10k+</p>
+              <p className="text-2xl font-bold text-white">{formatNumber(resourceCount)}+</p>
               <p className="text-xs text-gray-400 uppercase tracking-wide">
                 Resources
               </p>
@@ -92,7 +146,7 @@ function Header() {
               <Users size={24} />
             </div>
             <div>
-              <p className="text-2xl font-bold text-white">50k+</p>
+              <p className="text-2xl font-bold text-white">{formatNumber(numberOfUser)}+</p>
               <p className="text-xs text-gray-400 uppercase tracking-wide">
                 Students
               </p>

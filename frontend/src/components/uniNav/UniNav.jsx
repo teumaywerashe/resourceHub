@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
-import { assets } from "../../asset/assets";
-// import "./uniNav.css";
+
 import { StoreContext } from "../../context/store";
 import { NavLink } from "react-router-dom";
 function UniNav() {
