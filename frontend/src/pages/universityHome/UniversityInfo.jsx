@@ -1,7 +1,7 @@
 import React, { useContext,  } from "react";
 import { NavLink,  } from "react-router-dom";
 // import { StoreContext } from "../../../frontend/src/context/store";
-import "./UniversityInfo.css";
+import "./universityInfo.css";
 // import { assets } from "../../../frontend/src/asset/assets";
 import { StoreContext } from "../../context/store";
 import { assets } from "../../asset/assets";
