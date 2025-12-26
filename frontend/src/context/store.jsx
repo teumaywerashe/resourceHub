@@ -36,7 +36,7 @@ export const StoreContextProvider = ({ children }) => {
   const [universities, setUniversities] = useState([]);
   const [university, setUniversity] = useState();
 
-  const [url] = "https://resourcehub-8x8i.onrender.com/";
+  const [url] = import.meta.env.VITE_API_URL;
   //  useState("http://localhost:3000");
 
   const [news, setNews] = useState([]);
