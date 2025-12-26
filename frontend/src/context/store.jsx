@@ -36,7 +36,7 @@ export const StoreContextProvider = ({ children }) => {
   const [universities, setUniversities] = useState([]);
   const [university, setUniversity] = useState();
 
-  const [url] = import.meta.env.VITE_API_URL;
+  const url = import.meta.env.VITE_API_URL;
   //  useState("http://localhost:3000");
 
   const [news, setNews] = useState([]);
