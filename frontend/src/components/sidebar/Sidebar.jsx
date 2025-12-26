@@ -1,11 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { BookImage, Building2, University, NewspaperIcon, Settings, LogOut } from "lucide-react";
 import { StoreContext } from "../../context/store";
 
 function Sidebar() {
 
-  const {isSidebarOpen,setIsSidebarOpen}=useContext(StoreContext)
+  const {setIsSidebarOpen}=useContext(StoreContext)
+
+  useEffect(() => {
+    // Close sidebar on route change (optional)
+    const closeSidebar = () => {
+      setIsSidebarOpen(false);
+    };  
+    window.addEventListener("popstate", closeSidebar);
+    return () => {
+      window.removeEventListener("popstate", closeSidebar);
+    };  
+  }, [setIsSidebarOpen]);
+
   // Styles for the navigation links
   const baseLinkStyle = "flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 group mx-3";
   const activeLinkStyle = "bg-blue-600 text-white shadow-lg shadow-blue-100";

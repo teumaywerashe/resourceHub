@@ -8,8 +8,7 @@ export const StoreContext = createContext();
 export const StoreContextProvider = ({ children }) => {
   const [resources, setResources] = useState([]);
   const [resource, setResource] = useState([]);
-  const [isSideBarOpen, setIsSideBarOpen] = React.useState(false);  
-
+  const [isSideBarOpen, setIsSideBarOpen] = React.useState(false);
 
   const updateTime = (time) => {
     const date = new Date(time);
@@ -36,7 +35,10 @@ export const StoreContextProvider = ({ children }) => {
   );
   const [universities, setUniversities] = useState([]);
   const [university, setUniversity] = useState();
-  const [url] = useState("http://localhost:3000");
+
+  const [url] = "https://resourcehub-8x8i.onrender.com/";
+  //  useState("http://localhost:3000");
+
   const [news, setNews] = useState([]);
   const [universityNews, setUniversityNews] = useState([]);
   const [showLogin, setShowLogin] = useState(false);
@@ -117,11 +119,9 @@ export const StoreContextProvider = ({ children }) => {
       toast.error("Something went wrong");
     }
   };
-const getUniversityNews = async (universityId) => {
+  const getUniversityNews = async (universityId) => {
     try {
-      const response = await axios.get(
-        `${url}/api/news/get/${universityId}`
-      );
+      const response = await axios.get(`${url}/api/news/get/${universityId}`);
       setUniversityNews(response.data.uniNews);
     } catch (error) {
       console.log(error);
@@ -131,7 +131,8 @@ const getUniversityNews = async (universityId) => {
   return (
     <StoreContext.Provider
       value={{
-        uniId,getUniversityNews,
+        uniId,
+        getUniversityNews,
         setUniId,
         updateTime,
         currentUniversity,
@@ -154,7 +155,9 @@ const getUniversityNews = async (universityId) => {
         getResources,
         resources,
         getResource,
-        resource,isSideBarOpen,setIsSideBarOpen,
+        resource,
+        isSideBarOpen,
+        setIsSideBarOpen,
         getAllNews,
         news,
         setNews,
