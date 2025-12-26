@@ -27,15 +27,15 @@ function AdminHome() {
             <Sidebar />
           </div>
           <Routes>
-            <Route path="/" element={<UniversityInfo />}></Route>
-            <Route path="/add" element={<AddInfo />}></Route>.
-            <Route path="/resources" element={<Resource />}></Route>
-            <Route path="/university" element={<UniversityInfo />}></Route>
-            <Route path="/campus" element={<Campus />}></Route>
-            <Route path="/campusAdd" element={<AddCampus />}></Route>
-            <Route path="/addDep" element={<AddDepartment />}></Route>
-            <Route path="/addResource" element={<AddResource />}></Route>
-            <Route path="/news" element={<PostNews />}></Route>
+            <Route path="" element={<UniversityInfo />}></Route>
+            <Route path="add" element={<AddInfo />}></Route>.
+            <Route path="resources" element={<Resource />}></Route>
+            <Route path="university" element={<UniversityInfo />}></Route>
+            <Route path="campus" element={<Campus />}></Route>
+            <Route path="campusAdd" element={<AddCampus />}></Route>
+            <Route path="addDep" element={<AddDepartment />}></Route>
+            <Route path="addResource" element={<AddResource />}></Route>
+            <Route path="news" element={<PostNews />}></Route>
           </Routes>
         </div>
       </div>

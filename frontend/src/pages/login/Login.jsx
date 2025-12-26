@@ -59,7 +59,7 @@ function UserLogin({ setShowLogin }) {
     <div className="login-page">
       <div className="login-contents">
         <div className="login-content">
-          <h3>LogIn</h3>
+          <h3>Log In</h3>
           <img
             onClick={() => setShowLogin(false)}
             src={assets.cross_icon}
@@ -92,7 +92,7 @@ function UserLogin({ setShowLogin }) {
           </div>
           {error && <p style={{ color: "red" }}>{error}</p>}
           <button onClick={() => setIsLoggingIn(true)} type="submit">
-            {isLoggingIn ? "Logging In ..." : "LogIn"}
+            {isLoggingIn ? "Logging In ..." : "Log in"}
           </button>
 
           <p>
