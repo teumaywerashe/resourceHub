@@ -5,7 +5,7 @@ import Campus from "../campusInfo/Campus";
 import AddCampus from "../addCampus/AddCampus";
 import AddDepartment from "../addDepartment/AddDepartment";
 import AddResource from "../addResource/AddResource";
-import PostNews from "../PostNews/PostNews";
+import PostNews from "../postNews/PostNews";
 import Navebar from "../../components/adminNav/Navebar";
 import Sidebar from "../../components/sidebar/Sidebar";
 
