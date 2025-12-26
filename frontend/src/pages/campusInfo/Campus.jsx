@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from "react";
-import { StoreContext } from "../../../frontend/src/context/store";
+// import { StoreContext } from "../../../frontend/src/context/store";
 import { Plus, Trash2, PlusCircle } from "lucide-react"; // Icons for buttons
 import "./Campus.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { StoreContext } from "../../context/store";
 
 function Campus() {
   const { campus, setCampus, getUniversity, url } = useContext(StoreContext);
@@ -45,8 +46,7 @@ function Campus() {
 
   const deleteCampus = async (id) => {
     try {
-      console.log("id", id);
-      console.log("url", url);
+     
       const response = await axios.delete(`${url}/api/campus/delete/${id}`);
       if (response.data.success) {
         setCampus((pre) => pre.filter((camp) => camp._id !== id));
@@ -70,7 +70,7 @@ function Campus() {
       <div className="campus-list">
         <h1>campus lists</h1>
         <button
-          onClick={() => navigate("/campusAdd?")}
+          onClick={() => navigate("/adminHome/campusAdd")}
           id="campus-button"
           className="button campus-button"
         >

@@ -1,7 +1,10 @@
-import React from "react";
-import { GraduationCap, ArrowRight } from "lucide-react"; // Optional: Icons for visual appeal
+import React, { useContext } from "react";
+import { GraduationCap, ArrowRight } from "lucide-react";
+import { StoreContext } from "../../context/store";
 
 function About({ currentUniversity }) {
+
+  const {url}=useContext(StoreContext)
   // Fallback in case props aren't loaded yet
   if (!currentUniversity) return null;
 
@@ -42,9 +45,9 @@ function About({ currentUniversity }) {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-blue-200 rounded-full blur-3xl opacity-50 -z-10"></div>
             
             {/* Logo Container */}
-            <div className="relative bg-white p-8 rounded-2xl shadow-2xl border border-gray-100 max-w-sm w-full flex items-center justify-center transform hover:-translate-y-2 transition-transform duration-500">
+            <div className="hidden relative bg-white p-8 rounded-2xl shadow-2xl border border-gray-100 max-w-sm w-full sm:flex items-center justify-center transform hover:-translate-y-2 transition-transform duration-500">
               <img
-                src={`http://localhost:3000/uploads/${currentUniversity.logo}`}
+                src={`${url}/uploads/${currentUniversity.logo}`}
                 alt={`${currentUniversity.name} Logo`}
                 className="w-full h-auto object-contain max-h-[300px]"
                 onError={(e) => {

@@ -6,11 +6,14 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useContext } from "react";
 import { StoreContext } from "../../context/store";
+import { useNavigate } from "react-router-dom";
 
 function UserLogin({ setShowLogin }) {
-  const [uniId, setUniId] = useState();
-  const [currentState, setcurrentState] = useState("Login");
-  const { setUserToken, url } = useContext(StoreContext);
+  const navigate = useNavigate();
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const currentState = "Login";
+  const [error, setError] = useState("");
+  const { setAdminToken, url, setUniId } = useContext(StoreContext);
 
   const [data, setData] = useState({
     name: "",
@@ -18,6 +21,7 @@ function UserLogin({ setShowLogin }) {
     password: "",
   });
   const updateData = (e) => {
+    setError("");
     const name = e.target.name;
     const value = e.target.value;
     setData((pre) => ({ ...pre, [name]: value }));
@@ -26,23 +30,28 @@ function UserLogin({ setShowLogin }) {
     e.preventDefault();
     const newUrl =
       currentState === "Login"
-        ? `${url}/api/user/login`
-        : `${url}/api/user/register`;
+        ? `${url}/api/admin/login`
+        : `${url}/api/admin/register`;
 
     const response = await axios.post(newUrl, data);
     try {
       if (response.data.success) {
-        console.log(response.data);
-        setUserToken(response.data.token);
-        localStorage.setItem("token", response.data.token);
+        setAdminToken(response.data.token);
+        setUniId(response.data.uniId);
+        localStorage.setItem("adminToken", response.data.token);
         localStorage.setItem("uniId", response.data.uniId);
+        navigate("/adminHome");
         setShowLogin(false);
       } else {
-        toast.error(response.data.msg);
+        setError(response.data.msg);
+        // toast.error(response.data.msg);
       }
     } catch (error) {
       console.log(error);
+      setError(error.message);
       toast.error(response.data.msg);
+    } finally {
+      setIsLoggingIn(false);
     }
   };
 
@@ -50,7 +59,7 @@ function UserLogin({ setShowLogin }) {
     <div className="login-page">
       <div className="login-contents">
         <div className="login-content">
-          <h3>{currentState}</h3>
+          <h3>LogIn</h3>
           <img
             onClick={() => setShowLogin(false)}
             src={assets.cross_icon}
@@ -58,16 +67,6 @@ function UserLogin({ setShowLogin }) {
           />
         </div>
         <form onSubmit={createUser} className="login-info">
-          {currentState === "Sign Up" && (
-            <input
-              required
-              name="name"
-              value={data.name}
-              placeholder="name"
-              onChange={(e) => updateData(e)}
-              type="text"
-            />
-          )}
           <input
             required
             name="email"
@@ -84,21 +83,26 @@ function UserLogin({ setShowLogin }) {
             placeholder="password"
             type="text"
           />
-          <button type="submit">{currentState}</button>
+          <div className="flex items-start justify-between">
+            <input className="mt-2 mr-1" type="checkbox" id="checkbox" />{" "}
+            <label htmlFor="checkbox" className="cursor-pointer">
+              remember me
+            </label>
+            <span onClick={() => alert("feature comming soon")} className="ml-4">forget password</span>
+          </div>
+          {error && <p style={{ color: "red" }}>{error}</p>}
+          <button onClick={() => setIsLoggingIn(true)} type="submit">
+            {isLoggingIn ? "Logging In ..." : "LogIn"}
+          </button>
 
-          {currentState === "Login" ? (
-            <p>
-              don't have acount?
-              <span onClick={() => setcurrentState("Sign Up")}>
-                create account
-              </span>
-            </p>
-          ) : (
-            <p>
-              Already have an account?{" "}
-              <span onClick={() => setcurrentState("Login")}>login</span>
-            </p>
-          )}
+          <p>
+            Don't have account?
+            <span
+              className="ml-3"
+            >
+              contact admin
+            </span>
+          </p>
         </form>
       </div>
     </div>

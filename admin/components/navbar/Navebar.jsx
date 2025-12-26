@@ -9,7 +9,7 @@ import { StoreContext } from "../../../frontend/src/context/store";
 function Navebar({ setShowLogin }) {
   const navigate = useNavigate();
   const logoutProfile = () => {
-    console.log(uniId);
+    // console.log(uniId);
     localStorage.removeItem("adminToken");
     localStorage.removeItem("uniId");
     navigate("/");

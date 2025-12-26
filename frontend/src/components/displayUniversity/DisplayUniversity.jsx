@@ -1,20 +1,18 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import DisplayEach from "../displayEach/DisplayEach";
 import "./DisplayUniversity.css";
 import { SearchCheckIcon, SearchIcon } from "lucide-react";
+import { StoreContext } from "../../context/store";
 
 function DisplayUniversity({ generation }) {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const { url } = useContext(StoreContext);
   const fetchUniversity = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:3000/api/university/get"
-      );
+      const response = await axios.get(`${url}/api/university/get`);
       setData(response.data.uni);
-      console.log('response',response.data);
-      // console.log(response.data.uni);
     } catch (error) {
       console.log(error);
     }
@@ -23,7 +21,7 @@ function DisplayUniversity({ generation }) {
   useEffect(() => {
     fetchUniversity();
   }, []);
-  console.log(data);
+  // console.log(data);
   const filteredData = data?.filter((d) => {
     return d.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
@@ -38,7 +36,7 @@ function DisplayUniversity({ generation }) {
           Your Bestes
         </h3>
         <div className="relative w-full md:w-96">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <div className="absolute -top-2 -left-4 pl-3 flex items-center pointer-events-none">
             {/* Search Icon */}
             <svg
               className="h-5 w-5 text-gray-400"
@@ -56,55 +54,54 @@ function DisplayUniversity({ generation }) {
           </div>
           <input
             type="text"
-            className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-gray-50 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-150 ease-in-out sm:text-sm"
+            className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-gray-50 outline-none placeholder-gray-400 focus:outline-none  transition duration-150 ease-in-out sm:text-sm"
             placeholder="Search your university..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-16 justify-between items-center">
-        {filteredData?.length > 0 ? (
-          <>
-            {filteredData.map((item, index) => {
-              if (generation === "All" || generation === item.generation) {
-                return (
-                  <DisplayEach
-                    key={index}
-                    id={item._id}
-                    index={index}
-                    logo={`http://localhost:3000/uploads/${item.logo}`}
-                    name={item.name}
-                    image={item.logo}
-                  />
-                );
-              }
-            })}
-          </>
-        ) : (
-          <div className="flex flex-col items-center justify-center py-12 text-center">
-            <div className="bg-gray-100 p-4 rounded-full mb-3">
-              <svg
-                className="w-8 h-8 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-            </div>
-            <p className="text-gray-500 text-lg">No items found</p>
-            <p className="text-gray-400 text-sm">
-              Try to adjusting your search.
-            </p>
+
+      {filteredData?.length > 0 ? (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-16 justify-between items-center">
+          {filteredData.map((item, index) => {
+            if (generation === "All" || generation === item.generation) {
+              return (
+                <DisplayEach
+                  key={index}
+                  id={item._id}
+                  index={index}
+                  logo={`${url}/uploads/${item.logo}`}
+                  name={item.name}
+                  image={item.logo}
+                />
+              );
+            }
+          })}
+        </div>
+      ) : (
+        <div className="flex flex-col items-center my-1 mx-auto justify-center py-12 text-center">
+          <div className="bg-gray-100 p-4 rounded-full mb-3">
+            <svg
+              className="w-8 h-8 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
           </div>
-        )}
-      </div>
+          <p className="text-gray-500 text-lg">No University found</p>
+          <p className="text-gray-400 text-sm">
+            Try to adjusting your search or check your connection.
+          </p>
+        </div>
+      )}
     </div>
   );
 }

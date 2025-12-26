@@ -1,5 +1,4 @@
 import React from "react";
-import { useEffect } from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { assets } from "../../../frontend/src/asset/assets";
@@ -44,9 +43,6 @@ function PostNews() {
     }
   };
 
-  useEffect(() => {
-    console.log(data);
-  });
   return (
     <form onSubmit={(e)=>{e.preventDefault()
     postNew()}} className="post">

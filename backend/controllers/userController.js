@@ -17,7 +17,7 @@ export const loginUser = async(req, res) => {
             return res.json({ success: false, msg: "wrong password" });
         }
         const token = createToken(user.name);
-        res.json({ success: true, token });
+        res.json({ success: true, token, user });
     } catch (error) {
         console.log(error);
         res.json({ success: false, msg: "something error happened" });

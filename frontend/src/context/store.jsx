@@ -1,31 +1,54 @@
 // import axios from "axios";
 import axios from "axios";
 import React, { createContext, useState } from "react";
+import toast from "react-hot-toast";
 
 export const StoreContext = createContext();
 
 export const StoreContextProvider = ({ children }) => {
-  // const [showLogin, setShowLogin] = useState(true);
   const [resources, setResources] = useState([]);
   const [resource, setResource] = useState([]);
+  const [isSideBarOpen, setIsSideBarOpen] = React.useState(false);  
 
-  const [userToken, setUserToken] = useState("");
-  const [adminToken, setAdminToken] = useState("");
+
+  const updateTime = (time) => {
+    const date = new Date(time);
+
+    // Format date part
+    const datePart = date.toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+
+    // Format time part (HH:MM)
+    const timePart = date.toLocaleTimeString("en-GB", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false, // 24-hour format
+    });
+
+    return `${datePart} at ${timePart}`;
+  };
+  const [uniId, setUniId] = useState(localStorage.getItem("uniId") || "");
+  const [adminToken, setAdminToken] = useState(
+    localStorage.getItem("adminToken") || ""
+  );
   const [universities, setUniversities] = useState([]);
   const [university, setUniversity] = useState();
   const [url] = useState("http://localhost:3000");
   const [news, setNews] = useState([]);
   const [universityNews, setUniversityNews] = useState([]);
+  const [showLogin, setShowLogin] = useState(false);
 
   const [data, setData] = useState({});
 
-  const logOut = (person) => {
-    localStorage.removeItem("token");
-    if (person === "user") {
-      setUserToken("");
-    } else {
-      setAdminToken("");
-    }
+  const logOut = () => {
+    setAdminToken("");
+    localStorage.removeItem("AdminToken");
+    setAdminToken("");
+    localStorage.removeItem("uniId");
+    setUniId("");
   };
 
   const [campus, setCampus] = useState([]);
@@ -38,9 +61,11 @@ export const StoreContextProvider = ({ children }) => {
         getCampus(response.data.university?._id.toString());
       } else {
         console.log(response.data.msg);
+        toast.error(response.data.msg);
       }
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong");
     }
   };
 
@@ -52,6 +77,7 @@ export const StoreContextProvider = ({ children }) => {
       }
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong");
     }
   };
   const getResources = async () => {
@@ -61,9 +87,11 @@ export const StoreContextProvider = ({ children }) => {
         setResources(response.data.resources);
       } else {
         console.log("error");
+        toast.error(response.data.msg);
       }
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong");
     }
   };
   const getResource = async (id) => {
@@ -76,24 +104,38 @@ export const StoreContextProvider = ({ children }) => {
       }
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong");
     }
   };
 
   const getAllNews = async () => {
     try {
       const response = await axios.get(`${url}/api/news/get`);
-      console.log(response.data);
+      setNews(response.data.news);
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong");
     }
   };
-
+const getUniversityNews = async (universityId) => {
+    try {
+      const response = await axios.get(
+        `${url}/api/news/get/${universityId}`
+      );
+      setUniversityNews(response.data.uniNews);
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
+  };
   return (
     <StoreContext.Provider
       value={{
-        userToken,
+        uniId,getUniversityNews,
+        setUniId,
+        updateTime,
         currentUniversity,
-        setUserToken,
+        setCurrentUniveristy,
         adminToken,
         setAdminToken,
         universities,
@@ -102,6 +144,8 @@ export const StoreContextProvider = ({ children }) => {
         setUniversity,
         url,
         logOut,
+        showLogin,
+        setShowLogin,
         data,
         setData,
         setCampus,
@@ -110,7 +154,12 @@ export const StoreContextProvider = ({ children }) => {
         getResources,
         resources,
         getResource,
-        resource,getAllNews
+        resource,isSideBarOpen,setIsSideBarOpen,
+        getAllNews,
+        news,
+        setNews,
+        universityNews,
+        setUniversityNews,
       }}
     >
       {children}

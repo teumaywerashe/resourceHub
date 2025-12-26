@@ -12,7 +12,10 @@ import {
   LogOut,
   User,
   Settings,
-  ChevronDown
+  ChevronDown,
+  KeyIcon,
+  Key,
+  LockKeyhole
 } from "lucide-react";
 
 function Navbar({ setShowLogin }) {
@@ -48,7 +51,7 @@ function Navbar({ setShowLogin }) {
     { name: "Home", href: "#home", icon: <Home size={18} /> },
     { name: "Universities", href: "#universities", icon: <GraduationCap size={18} /> },
     { name: "News", href: "#news", icon: <Newspaper size={18} /> },
-    { name: "Contact", href: "#contact", icon: <Phone size={18} /> },
+    { name: "Contact", href: "#footer", icon: <Phone size={18} /> },
   ];
 
   return (
@@ -59,7 +62,7 @@ function Navbar({ setShowLogin }) {
           : "bg-white md:bg-transparent py-5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center">
+      <div className="max-w-full mx-auto px-4 md:px-8 flex justify-between items-center">
         
         {/* --- LOGO SECTION --- */}
         <div className="flex items-center gap-2 cursor-pointer">
@@ -124,17 +127,12 @@ function Navbar({ setShowLogin }) {
           ) : (
             /* Logged Out State */
             <div className="hidden md:flex justify-center items-center gap-3">
+           
               <button 
                 onClick={() => setShowLogin(true)}
-                className="text-gray-600 mt-10 font-medium hover:text-indigo-600 text-sm transition-colors"
+                className="bg-indigo-600 flex  gap-3 items-center hover:bg-indigo-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-lg shadow-indigo-500/30 transition-all hover:-translate-y-0.5"
               >
-                Sign in
-              </button>
-              <button 
-                onClick={() => setShowLogin(true)}
-                className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-lg shadow-indigo-500/30 transition-all hover:-translate-y-0.5"
-              >
-                Get Started
+              <LockKeyhole size={16} /> <span> LogIn as Admin</span>
               </button>
             </div>
           )}
@@ -168,11 +166,9 @@ function Navbar({ setShowLogin }) {
           {!userTooken && (
             <div className="pt-4 mt-2 border-t border-gray-100 flex flex-col gap-3">
               <button onClick={() => {setShowLogin(true); setIsMobileMenuOpen(false)}} className="w-full py-3 bg-indigo-600 text-white rounded-lg font-bold shadow-md">
-                Get Started
+               LogIn as Admin
               </button>
-              <button onClick={() => {setShowLogin(true); setIsMobileMenuOpen(false)}} className="w-full py-3 text-gray-600 font-medium">
-                Sign In
-              </button>
+            
             </div>
           )}
         </ul>

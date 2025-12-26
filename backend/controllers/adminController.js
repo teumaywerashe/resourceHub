@@ -38,7 +38,7 @@ export const registerAdmin = async(req, res) => {
                 return res.json({ success: false, msg: "no univeristy found" });
             }
             const uniId = foundUniversity._id.toString();
-            console.log(uniId);
+
             const token = createToken(user.name, uniId);
             res.json({ success: true, token, uniId });
         }
@@ -66,7 +66,6 @@ export const loginAdmin = async(req, res) => {
             return res.json({ success: false, msg: "no univeristy found" });
         }
         const uniId = foundUniversity._id.toString();
-        console.log(uniId);
         const token = createToken(user.name, uniId);
         res.json({ success: true, token, uniId });
     } catch (error) {
@@ -77,7 +76,6 @@ export const loginAdmin = async(req, res) => {
 
 export const getAdminUniversity = async(req, res) => {
     try {
-        // console.log(req.uniId);
         const university = await universityModel.findById(req.uniId);
         if (!university) {
             return res.json({ success: false, msg: "University not found" });

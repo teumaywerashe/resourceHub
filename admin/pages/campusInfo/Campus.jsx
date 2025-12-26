@@ -5,18 +5,17 @@ import "./Campus.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useState } from "react";
 
 function Campus() {
   const { campus, setCampus, getUniversity, url } = useContext(StoreContext);
-  const [department, setDepartment] = useState({});
+  // const [department, setDepartment] = useState({});
 
-  const [level, setLevel] = useState([]);
+  // const [level, setLevel] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log(department, level);
-  });
+  // useEffect(() => {
+  //   console.log(department, level);
+  // });
   const deleteDepartment = async (camp, ind, lev, campId) => {
     try {
       const response = await axios.get(`${url}/api/campus/find/${campId}`);
@@ -52,8 +51,8 @@ function Campus() {
 
   const deleteCampus = async (id) => {
     try {
-      console.log("id", id);
-      console.log("url", url);
+      // console.log("id", id);
+      // console.log("url", url);
       const response = await axios.delete(`${url}/api/campus/delete/${id}`);
       if (response.data.success) {
         setCampus((pre) => pre.filter((camp) => camp._id !== id));

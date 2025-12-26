@@ -2,7 +2,8 @@ import React, { useState, useContext } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { StoreContext } from "../../../frontend/src/context/store";
+import { StoreContext } from "../../context/store";
+// import { StoreContext } from "../../../frontend/src/context/store";
 
 function AddDep() {
   const { campus, setCampus, url } = useContext(StoreContext);

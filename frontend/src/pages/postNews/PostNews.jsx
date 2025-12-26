@@ -1,14 +1,13 @@
 import React from "react";
-import { useEffect } from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { assets } from "../../../frontend/src/asset/assets";
 import { useContext } from "react";
-import { StoreContext } from "../../../frontend/src/context/store";
 import axios from "axios";
+import { assets } from "../../asset/assets";
+import { StoreContext } from "../../context/store";
 function PostNews() {
   const uniId = localStorage.getItem("uniId");
-  
+
   const [image, setImage] = useState(null);
   const [data, setData] = useState({ uniId: uniId });
   const { url } = useContext(StoreContext);
@@ -26,9 +25,7 @@ function PostNews() {
     if (image) formData.append("image", image);
 
     try {
-      const response = await axios.post(`${url}/api/news/add`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const response = await axios.post(`${url}/api/news/add`, formData);
       if (response.data.success) {
         toast.success(response.data.msg);
       } else {
@@ -44,12 +41,14 @@ function PostNews() {
     }
   };
 
-  useEffect(() => {
-    console.log(data);
-  });
   return (
-    <form onSubmit={(e)=>{e.preventDefault()
-    postNew()}} className="post">
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        postNew();
+      }}
+      className="post"
+    >
       <input
         type="file"
         src={image ? URL.createObjectURL(image) : assets.upload_area}
@@ -64,6 +63,12 @@ function PostNews() {
         name="title"
         type="text"
         placeholder="title"
+      />
+      <input
+        onChange={(e) => handleChange(e)}
+        name="category"
+        type="text"
+        placeholder="category"
       />
       <textarea
         onChange={(e) => handleChange(e)}

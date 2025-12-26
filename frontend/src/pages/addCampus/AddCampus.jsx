@@ -3,8 +3,8 @@ import axios from "axios";
 import "./AddCampus.css";
 import toast from "react-hot-toast";
 import { BookOpen, Trash2 } from "lucide-react";
-import { StoreContext } from "../../../frontend/src/context/store";
 import { useNavigate } from "react-router-dom";
+import { StoreContext } from "../../context/store";
 function AddCampus() {
   const navigate=useNavigate()
   const { url } = useContext(StoreContext);

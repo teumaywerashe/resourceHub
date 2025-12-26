@@ -134,7 +134,7 @@ function Header() {
               <BookOpen size={24} />
             </div>
             <div>
-              <p className="text-2xl font-bold text-white">{formatNumber(resourceCount)}+</p>
+              <p className="text-2xl font-bold text-white">{formatNumber(resourceCount)}k+</p>
               <p className="text-xs text-gray-400 uppercase tracking-wide">
                 Resources
               </p>
@@ -146,7 +146,7 @@ function Header() {
               <Users size={24} />
             </div>
             <div>
-              <p className="text-2xl font-bold text-white">{formatNumber(numberOfUser)}+</p>
+              <p className="text-2xl font-bold text-white">{formatNumber(numberOfUser)}k+</p>
               <p className="text-xs text-gray-400 uppercase tracking-wide">
                 Students
               </p>

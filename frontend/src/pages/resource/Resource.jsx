@@ -1,11 +1,13 @@
 import React from "react";
 import { useContext } from "react";
-import { StoreContext } from "../../../frontend/src/context/store";
+// import { StoreContext } from "../../../frontend/src/context/store";
 import { useEffect } from "react";
-import { assets } from "../../../frontend/src/asset/assets";
+// import { assets } from "../../../frontend/src/asset/assets";
 import { Plus, Trash2 } from "lucide-react";
 import "./Resource.css";
 import { useNavigate } from "react-router-dom";
+import { StoreContext } from "../../context/store";
+import { assets } from "../../asset/assets";
 function Resource() {
   const { getResources, resources, url } = useContext(StoreContext);
   const navigate=useNavigate()
@@ -16,7 +18,7 @@ function Resource() {
     <div className="resource-container">
       <div className="resource-head">
         <h1>Resources</h1>
-        <button onClick={()=>navigate('/addResource')}>
+        <button onClick={()=>navigate('/adminHome/addResource')}>
           <Plus size={14} /> Add Resources
         </button>
       </div>

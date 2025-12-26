@@ -1,8 +1,10 @@
 import React, { useContext,  } from "react";
 import { NavLink,  } from "react-router-dom";
-import { StoreContext } from "../../../frontend/src/context/store";
+// import { StoreContext } from "../../../frontend/src/context/store";
 import "./UniversityInfo.css";
-import { assets } from "../../../frontend/src/asset/assets";
+// import { assets } from "../../../frontend/src/asset/assets";
+import { StoreContext } from "../../context/store";
+import { assets } from "../../asset/assets";
 
 function UniversityInfo({ setShowLogin }) {
   const adminToken = localStorage.getItem("adminToken");
@@ -54,15 +56,7 @@ function UniversityInfo({ setShowLogin }) {
               <p>
                 Join our {c.name} Faculty and become an innovator of the future.
               </p>
-              {/* <div>
-                {Object.entries(c.departments)?.map(([level]) => (
-                  <div className="programs-link" key={level}>
-                    <a href={`?${level}`}>
-                      <p className="program">{level} Programs</p>
-                    </a>
-                  </div>
-                ))}
-              </div> */}
+           
             </NavLink>
           ))}
         </div>

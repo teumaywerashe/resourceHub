@@ -1,7 +1,9 @@
 import mongoose, { mongo } from "mongoose";
 
 const newSchema = new mongoose.Schema({
-    image: { type: String },
+    image: {
+        type: String
+    },
     uniId: {
         type: String,
         required: true,

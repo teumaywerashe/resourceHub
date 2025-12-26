@@ -1,7 +1,6 @@
 import React from "react";
 import "./AddResource.css";
 import { useSearchParams } from "react-router-dom";
-import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -15,9 +14,9 @@ function AddResource() {
   const departName = searchParams.get("dept");
   const [file, setFile] = useState(null);
 
-  useEffect(() => {
-    console.log(data, url);
-  });
+  // useEffect(() => {
+  //   console.log(data, url);
+  // });
 
   const [data, setData] = useState({
     campusId,
@@ -39,7 +38,7 @@ function AddResource() {
     }
     if (file) {
       formData.append("file", file);
-      console.log("file uploaded");
+      // console.log("file uploaded");
     }
     try {
       const response = await axios.post(

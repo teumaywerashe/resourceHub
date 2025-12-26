@@ -33,7 +33,6 @@ function AdminLogin({ showLogin, setShowLogin }) {
     const response = await axios.post(newUrl, data);
     try {
       if (response.data.success) {
-        console.log(response.data);
         setAdminToken(response.data.token);
         localStorage.setItem("adminToken", response.data.token);
         localStorage.setItem("uniId", response.data.uniId);

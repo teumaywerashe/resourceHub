@@ -59,7 +59,7 @@ const AddInfo = () => {
       } else {
         toast.error(response.data.msg);
       }
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       toast.error(error.message);
       console.log(error);

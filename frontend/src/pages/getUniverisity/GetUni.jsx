@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useSearchParams, NavLink } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { StoreContext } from "../../context/store";
 import UniNav from "../../components/uniNav/UniNav";
@@ -20,7 +20,7 @@ function GetUni() {
 
   useEffect(() => {
     getUniversity(id);
-    console.log(currentUniversity);
+    // console.log(currentUniversity);
   }, []);
   return (
     <div className="each-uni">
@@ -29,7 +29,7 @@ function GetUni() {
         <Hero currentUniversity={currentUniversity} url={url} />
         <About currentUniversity={currentUniversity} />
         <Faculity campus={campus} url={url} />
-        <UniversityNews currentUniversity={currentUniversity}/>
+        <UniversityNews id={id} currentUniversity={currentUniversity}/>
         <Contact />
       </div>
     </div>

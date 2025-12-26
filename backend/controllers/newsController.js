@@ -7,7 +7,7 @@ export const getAllNews = async(req, res) => {
         if (news) {
             res.status(200).json({ success: true, news })
         } else {
-            res.status(400).json({ success: false, msg: "No news found!" })
+            res.status(200).json({ success: false, msg: "No news found!" })
         }
     } catch (error) {
         console.log(error);
@@ -41,7 +41,7 @@ export const getNew = async(req, res) => {
             const newUni = await universityModel.findById(uniId)
             res.status(200).json({ success: true, newNew, newUni })
         } else {
-            res.status(400).json({ success: false, msg: "new not found" })
+            res.status(200).json({ success: false, msg: "new not found" })
         }
     } catch (error) {
         console.log(error);
@@ -51,12 +51,13 @@ export const getNew = async(req, res) => {
 
 export const addNew = async(req, res) => {
     try {
-        const { title, content, uniId } = req.body
+        const { title, category, content, uniId } = req.body
         const data = {
             uniId,
             image: req.file.filename,
             title,
-            content
+            content,
+            category
         }
         const newNew = new newsModel(data)
         await newNew.save()

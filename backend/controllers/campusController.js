@@ -48,7 +48,6 @@ export const addCampus = async(req, res) => {
 export const deleteCampus = async(req, res) => {
     try {
         const { id } = req.params;
-        console.log(id);
         const deleted = await campusModel.findByIdAndDelete(id);
         if (!deleted) {
             return res.status(404).json({ success: false, msg: "Campus not found" });

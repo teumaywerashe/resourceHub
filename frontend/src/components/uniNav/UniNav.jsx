@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { StoreContext } from "../../context/store";
 import { NavLink } from "react-router-dom";
 function UniNav() {
-  const { currentUniversity } = useContext(StoreContext);
+  const { currentUniversity,url } = useContext(StoreContext);
   return (
     <div className="flex items-center justify-between bg-white text-black p-2 m-0">
       <NavLink
@@ -12,7 +12,7 @@ function UniNav() {
       >
         <img
           className="w-[50px] h-[50px] rounded-[50%] cursor-pointer"
-          src={`http://localhost:3000/uploads/${currentUniversity.logo}`}
+          src={`${url}/uploads/${currentUniversity.logo}`}
           alt=""
         />
         {currentUniversity && (
