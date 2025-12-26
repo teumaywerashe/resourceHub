@@ -1,6 +1,6 @@
 import React from "react";
 // import { assets } from "../../asset/assets";
-import "./displayEach.css";
+import "./DisplayEach.css";
 import { useNavigate } from "react-router-dom";
 
 // import { StoreContext } from "../../context/store";
