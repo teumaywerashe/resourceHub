@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { BookImage, Building2, University, NewspaperIcon, Settings, LogOut } from "lucide-react";
+import { BookImage, Building2, University, NewspaperIcon, LogOut } from "lucide-react";
 import { StoreContext } from "../../context/store";
 
 function Sidebar() {
