@@ -56,7 +56,7 @@ function Navbar({ setShowLogin }) {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 font-sans ${
+      className={`fixed top-0 left-0 w-full z-50 bg-white transition-all duration-300 font-sans ${
         scrolled 
           ? "bg-white/95 backdrop-blur-md shadow-md py-3" 
           : "bg-white md:bg-transparent py-5"

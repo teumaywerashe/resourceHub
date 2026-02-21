@@ -1,12 +1,12 @@
 import React from "react";
 import "./Login.css";
-import { assets } from "../../asset/assets";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useContext } from "react";
 import { StoreContext } from "../../context/store";
 import { useNavigate } from "react-router-dom";
+import { ListX, X } from "lucide-react";
 
 function UserLogin({ setShowLogin }) {
   const navigate = useNavigate();
@@ -44,7 +44,7 @@ function UserLogin({ setShowLogin }) {
         setShowLogin(false);
       } else {
         setError(response.data.msg);
-        // toast.error(response.data.msg);
+  
       }
     } catch (error) {
       console.log(error);
@@ -60,35 +60,19 @@ function UserLogin({ setShowLogin }) {
       <div className="login-contents">
         <div className="login-content">
           <h3>Log In</h3>
-          <img
-            onClick={() => setShowLogin(false)}
-            src={assets.cross_icon}
-            alt=""
-          />
+          <X  onClick={() => setShowLogin(false)} className="cursor-pointer " size={26}/>
         </div>
         <form onSubmit={createUser} className="login-info">
-          <input
-            required
-            name="email"
-            value={data.email}
-            onChange={(e) => updateData(e)}
-            placeholder="email"
-            type="text"
+          <input required name="email" value={data.email} onChange={(e) => updateData(e)} placeholder="email" type="text"
           />
-          <input
-            required
-            name="password"
-            value={data.password}
-            onChange={(e) => updateData(e)}
-            placeholder="password"
-            type="text"
+          <input required name="password" value={data.password} onChange={(e) => updateData(e)} placeholder="password" type="text"
           />
           <div className="flex items-start justify-between">
             <input className="mt-2 mr-1" type="checkbox" id="checkbox" />{" "}
             <label htmlFor="checkbox" className="cursor-pointer">
               remember me
             </label>
-            <span onClick={() => alert("feature comming soon")} className="ml-4">forget password</span>
+            <span onClick={() => toast.success("feature comming soon")} className="ml-4">forget password</span>
           </div>
           {error && <p style={{ color: "red" }}>{error}</p>}
           <button onClick={() => setIsLoggingIn(true)} type="submit">
@@ -97,9 +81,7 @@ function UserLogin({ setShowLogin }) {
 
           <p>
             Don't have account?
-            <span
-              className="ml-3"
-            >
+            <span  className="ml-3">
               contact admin
             </span>
           </p>

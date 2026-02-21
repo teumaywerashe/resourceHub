@@ -81,7 +81,7 @@ function NewsDisplay() {
         <button
           onClick={() => scrollHandler(-300)}
           className={`sm:absolute mr-2 -top-8 -right-10 sm:right-25 rounded-4xl shadow-md  -translate-y-1/2 ${
-            isLeftScrollable ? "bg-white" : "bg-gray-300 text-white"
+            isLeftScrollable ? "bg-gray-600 text-white" : "bg-gray-100 text-gray-400"
           }`}
         >
           <ChevronLeft />
@@ -90,7 +90,7 @@ function NewsDisplay() {
         <button
           onClick={() => scrollHandler(300)}
           className={` -top-8 right-3 sm:right-10  sm:absolute  -2  rounded-4xl shadow-md -translate-y-1/2 ${
-            isRightScrollable ? "bg-white" : "bg-gray-300 text-white"
+            isRightScrollable ? "bg-gray-600 text-white" : "bg-gray-100 text-gray-400"
           }`}
         >
           <ChevronRight />

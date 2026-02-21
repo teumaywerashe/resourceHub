@@ -96,9 +96,14 @@ function DisplayUniversity({ generation }) {
               ></path>
             </svg>
           </div>
-          <p className="text-gray-500 text-lg">No University found</p>
+          <p className="text-gray-500 text-lg ">
+            No University found{" "}
+            <span className="text-red-400 font-mono text-2xl font-extrabold">
+              !
+            </span>
+          </p>
           <p className="text-gray-400 text-sm">
-            Try to adjusting your search or check your connection.
+            Try to adjusting your search or check your internat connection.
           </p>
         </div>
       )}
