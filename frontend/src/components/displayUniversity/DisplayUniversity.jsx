@@ -20,7 +20,7 @@ function DisplayUniversity({ generation }) {
 
   useEffect(() => {
     fetchUniversity();
-  }, []);
+  }, [data.length]);
   // console.log(data);
   const filteredData = data?.filter((d) => {
     return d.name.toLowerCase().includes(searchTerm.toLowerCase());

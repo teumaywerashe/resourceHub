@@ -48,7 +48,7 @@ function NewsDisplay() {
 
   useEffect(() => {
     getAllNews();
-  }, []);
+  }, [news,length]);
 
   // Helper to get badge color
   const getBadgeColor = (type) => {
@@ -102,7 +102,7 @@ function NewsDisplay() {
         className="relative px-4 overflow-scroll scrollbar-hide w-full"
       >
         {news.length > 0 ? (
-          <div className="flex-col sm:flex sm:flex-row w-max gap-8 hover:paused py-4">
+          <div className="flex-col sm:flex sm:flex-row w-max gap-8 items-center justify-center hover:paused py-4">
             {/* animate-infinite-scroll */}
             {/* We render the list TWICE to create the seamless loop effect */}
             {[...news].map((item, index) => (

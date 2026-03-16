@@ -15,7 +15,7 @@ function Footer() {
             <img src={assets.facebook_icon} alt="facebook" />
 
             <img src={assets.linkedin_icon} alt="linkedin" />
-            <img src={assets.twitter_icon} alt="twitter" />
+            <img src={assets.x_icon} alt="twitter" />
           </div>
         </div>
         <div className="footer-content-center">
