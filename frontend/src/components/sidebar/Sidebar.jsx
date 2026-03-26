@@ -5,18 +5,18 @@ import { StoreContext } from "../../context/store";
 
 function Sidebar() {
 
-  const {setIsSidebarOpen}=useContext(StoreContext)
+  const {setIsSideBarOpen}=useContext(StoreContext)
 
   useEffect(() => {
     // Close sidebar on route change (optional)
     const closeSidebar = () => {
-      setIsSidebarOpen(false);
+      setIsSideBarOpen(false);
     };  
     window.addEventListener("popstate", closeSidebar);
     return () => {
       window.removeEventListener("popstate", closeSidebar);
     };  
-  }, [setIsSidebarOpen]);
+  }, [setIsSideBarOpen]);
 
   // Styles for the navigation links
   const baseLinkStyle = "flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 group mx-3";
@@ -38,7 +38,7 @@ function Sidebar() {
 
       {/* 2. Navigation Section */}
       <nav className="flex flex-col gap-2 flex-grow">
-        <NavLink onClick={()=>setIsSidebarOpen(false)}
+        <NavLink onClick={()=>setIsSideBarOpen(false)}
           to="/adminHome/add"
           className={({ isActive }) => `${baseLinkStyle} ${isActive ? activeLinkStyle : inactiveLinkStyle}`}
         >
@@ -46,7 +46,7 @@ function Sidebar() {
           <span className="font-medium text-sm">Update University</span>
         </NavLink>
 
-        <NavLink onClick={()=>setIsSidebarOpen(false)}
+        <NavLink onClick={()=>setIsSideBarOpen(false)}
           to="/adminHome/campus"
           className={({ isActive }) => `${baseLinkStyle} ${isActive ? activeLinkStyle : inactiveLinkStyle}`}
         >
@@ -54,7 +54,7 @@ function Sidebar() {
           <span className="font-medium text-sm">Update Campuses</span>
         </NavLink>
 
-        <NavLink onClick={()=>setIsSidebarOpen(false)}
+        <NavLink onClick={()=>setIsSideBarOpen(false)}
           to="/adminHome/resources"
           className={({ isActive }) => `${baseLinkStyle} ${isActive ? activeLinkStyle : inactiveLinkStyle}`}
         >
@@ -62,7 +62,7 @@ function Sidebar() {
           <span className="font-medium text-sm">Resources</span>
         </NavLink>
 
-        <NavLink onClick={()=>setIsSidebarOpen(false)}
+        <NavLink onClick={()=>setIsSideBarOpen(false)}
           to="/adminHome/news"
           className={({ isActive }) => `${baseLinkStyle} ${isActive ? activeLinkStyle : inactiveLinkStyle}`}
         >

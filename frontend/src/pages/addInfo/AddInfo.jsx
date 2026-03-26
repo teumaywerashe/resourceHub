@@ -31,9 +31,7 @@ const AddInfo = () => {
   }, [currentUniversity]);
 
   const updateData = (e) => {
-    e.preventDefault();
-    const name = e.target.name;
-    const value = e.target.value;
+    const { name, value } = e.target;
     setData((pre) => ({ ...pre, [name]: value }));
   };
   useEffect(() => {
@@ -98,9 +96,8 @@ const AddInfo = () => {
           <select
             name="name"
             value={data.name}
-           
+            onChange={(e) => updateData(e)}
             id="name"
-
             className="form-input"
           >
             <option value="">-- Select a University --</option>

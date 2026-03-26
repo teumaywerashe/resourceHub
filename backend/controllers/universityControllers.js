@@ -54,22 +54,25 @@ export const getSingleUniversity = async (req, res) => {
 export const updateUniversity = async (req, res) => {
   const { id } = req.params;
   try {
-    // if (!req.file) {
-    //     return res.status(400).json({ success: false, msg: "file not uploaded" });
-    // }
     const uni = await universityModel.findById(id);
+    if (!uni) {
+      return res.status(404).json({ success: false, msg: "university not found" });
+    }
+
     if (req.file) {
-      const oldLogoPath = path.join(__dirname, "uploads", uni.logo);
+      // go up two levels from controllers/ to reach the project root uploads/
+      const oldLogoPath = path.join(__dirname, "..", "uploads", uni.logo);
       if (fs.existsSync(oldLogoPath)) {
-        fs.unlinkSync(oldLogoPath); // deletes the old logo
+        fs.unlinkSync(oldLogoPath);
       }
     }
+
     const updateData = {
       name: req.body.name || uni.name,
-      description: req.body.description || uni.des,
+      description: req.body.description || uni.description,
       foundCity: req.body.foundCity || uni.foundCity,
       establishedYear: req.body.establishedYear || uni.establishedYear,
-      logo: req.file.filename || uni.logo,
+      logo: req.file ? req.file.filename : uni.logo,
       generation: req.body.generation || uni.generation,
       region: req.body.region || uni.region,
     };
@@ -77,17 +80,9 @@ export const updateUniversity = async (req, res) => {
     const university = await universityModel.findByIdAndUpdate(id, updateData, {
       new: true,
     });
-    if (!university)
-      return res
-        .status(404)
-        .json({ success: false, msg: "university not found" });
-    res
-      .status(200)
-      .json({ success: true, msg: "updated successfully", university });
+    res.status(200).json({ success: true, msg: "updated successfully", university });
   } catch (error) {
     console.log(error);
-    res
-      .status(500)
-      .json({ success: false, msg: "server error", error: error.message });
+    res.status(500).json({ success: false, msg: "server error", error: error.message });
   }
 };

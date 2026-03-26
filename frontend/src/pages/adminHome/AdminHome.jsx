@@ -28,7 +28,7 @@ function AdminHome() {
           </div>
           <Routes>
             <Route path="/" element={<UniversityInfo />}></Route>
-            <Route path="/add" element={<AddInfo />}></Route>.
+            <Route path="/add" element={<AddInfo />}></Route>
             <Route path="/resources" element={<Resource />}></Route>
             <Route path="/university" element={<UniversityInfo />}></Route>
             <Route path="/campus" element={<Campus />}></Route>

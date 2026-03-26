@@ -22,6 +22,7 @@ app.use(
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
 app.use("/uploads/resources", express.static("uploads/resources"));
+app.use("/uploads/news", express.static("uploads/news"));
 app.use("/api/university", universityRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/user", userRouter);

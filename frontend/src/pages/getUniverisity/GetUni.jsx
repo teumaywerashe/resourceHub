@@ -10,6 +10,7 @@ import About from "../../components/aboutUni/About";
 import Hero from "../../components/uniHero/Hero";
 import Contact from "../../components/contact/Contact";
 import UniversityNews from "../../components/uniNews/UniversityNews";
+import ResourceHub from "../../components/resourceHub/ResourceHub";
 
 function GetUni() {
   const [searchParams] = useSearchParams();
@@ -20,7 +21,6 @@ function GetUni() {
 
   useEffect(() => {
     getUniversity(id);
-    // console.log(currentUniversity);
   }, []);
   return (
     <div className="each-uni">
@@ -30,6 +30,7 @@ function GetUni() {
         <About currentUniversity={currentUniversity} />
         <Faculity campus={campus} url={url} />
         <UniversityNews id={id} currentUniversity={currentUniversity}/>
+        <ResourceHub uniId={id} />
         <Contact />
       </div>
     </div>

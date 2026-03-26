@@ -1,5 +1,11 @@
 import { newsModel } from "../models/newsModule.js";
 import { universityModel } from "../models/univeristyModel.js";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export const getAllNews = async(req, res) => {
     try {
@@ -51,6 +57,9 @@ export const getNew = async(req, res) => {
 
 export const addNew = async(req, res) => {
     try {
+        if (!req.file) {
+            return res.status(400).json({ success: false, msg: "Image is required" });
+        }
         const { title, category, content, uniId } = req.body
         const data = {
             uniId,
@@ -61,9 +70,29 @@ export const addNew = async(req, res) => {
         }
         const newNew = new newsModel(data)
         await newNew.save()
-        res.status(201).json({ success: true, msg: "added succesifully", newNew });
+        res.status(201).json({ success: true, msg: "added successfully", newNew });
     } catch (error) {
         console.log(error);
         res.status(500).json({ success: false, msg: "server error" })
+    }
+}
+
+export const deleteNew = async(req, res) => {
+    try {
+        const { id } = req.params;
+        const news = await newsModel.findById(id);
+        if (!news) {
+            return res.status(404).json({ success: false, msg: "News not found" });
+        }
+        // delete image file
+        const imagePath = path.join(__dirname, "..", "uploads", "news", news.image);
+        if (fs.existsSync(imagePath)) {
+            fs.unlinkSync(imagePath);
+        }
+        await newsModel.findByIdAndDelete(id);
+        res.status(200).json({ success: true, msg: "News deleted successfully" });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, msg: "server error" });
     }
 }

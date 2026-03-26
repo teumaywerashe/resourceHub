@@ -71,7 +71,7 @@ function NewsDisplay() {
           <Bell size={16} className="animate-bounce" /> Latest Updates
         </div>
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 tracking-tight">
-          Campus News & Announcements
+           News & Announcements
         </h2>
       </div>
 

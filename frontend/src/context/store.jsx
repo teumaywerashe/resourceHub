@@ -82,18 +82,17 @@ export const StoreContextProvider = ({ children }) => {
       toast.error("Something went wrong");
     }
   };
-  const getResources = async () => {
+  const getResources = async (filters = {}) => {
     try {
-      const response = await axios.get(`${url}/api/resources/get`);
+      const params = new URLSearchParams(filters).toString();
+      const response = await axios.get(`${url}/api/resources/get${params ? "?" + params : ""}`);
       if (response.data.success) {
         setResources(response.data.resources);
       } else {
         console.log("error");
-        toast.error(response.data.msg);
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
     }
   };
   const getResource = async (id) => {
