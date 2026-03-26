@@ -29,6 +29,17 @@ const universitySchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    contact: {
+        address: { type: String, default: "" },
+        phone1: { type: String, default: "" },
+        phone2: { type: String, default: "" },
+        email1: { type: String, default: "" },
+        email2: { type: String, default: "" },
+        website: { type: String, default: "" },
+        facebook: { type: String, default: "" },
+        twitter: { type: String, default: "" },
+        linkedin: { type: String, default: "" },
+    },
 });
 
 export const universityModel =

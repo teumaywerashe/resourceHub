@@ -107,16 +107,16 @@ function Campus() {
                           <input type="text" value={dept} readOnly />
                           <button
                             onClick={() =>
-                              navigate(`/addResource?dept=${dept}&id=${c._id}`)
+                              navigate(`/adminHome/addResource?dept=${dept}&id=${c._id}`)
                             }
                             className="button"
                           >
-                            <Plus size={14} /> cource
+                            <Plus size={14} /> course
                           </button>
                           <button
                             onClick={() =>
                               navigate(
-                                `/addDep?level=${key}&index=${i}&dept=${dept}&id=${c._id}`
+                                `/adminHome/addDep?level=${key}&index=${i}&dept=${dept}&id=${c._id}`
                               )
                             }
                             className="button"

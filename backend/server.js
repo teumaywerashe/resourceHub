@@ -30,9 +30,9 @@ app.use("/api/campus", campusRouter);
 app.use("/api/resources", resourceRoute);
 app.use("/api/news", newsRouter);
 
-const start = () => {
+const start = async() => {
     try {
-        connectDB(process.env.MONGO_URL);
+       await  connectDB(process.env.MONGO_URL);
         app.listen(3000, () => {
             console.log("server listing on port 3000..");
         });

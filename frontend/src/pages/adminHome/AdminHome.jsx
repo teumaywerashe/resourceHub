@@ -6,6 +6,7 @@ import AddCampus from "../addCampus/AddCampus";
 import AddDepartment from "../addDepartment/AddDepartment";
 import AddResource from "../addResource/AddResource";
 import PostNews from "../postNews/PostNews";
+import AddContact from "../addContact/AddContact";
 import Navebar from "../../components/adminNav/Navebar";
 import Sidebar from "../../components/sidebar/Sidebar";
 
@@ -36,6 +37,7 @@ function AdminHome() {
             <Route path="/addDep" element={<AddDepartment />}></Route>
             <Route path="/addResource" element={<AddResource />}></Route>
             <Route path="/news" element={<PostNews />}></Route>
+            <Route path="/contact" element={<AddContact />}></Route>
           </Routes>
         </div>
       </div>

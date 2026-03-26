@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { BookImage, Building2, University, NewspaperIcon, LogOut } from "lucide-react";
+import { BookImage, Building2, University, NewspaperIcon, Phone, LogOut } from "lucide-react";
 import { StoreContext } from "../../context/store";
 
 function Sidebar() {
@@ -68,6 +68,14 @@ function Sidebar() {
         >
           <NewspaperIcon size={20} />
           <span className="font-medium text-sm capitalize">News</span>
+        </NavLink>
+
+        <NavLink onClick={()=>setIsSideBarOpen(false)}
+          to="/adminHome/contact"
+          className={({ isActive }) => `${baseLinkStyle} ${isActive ? activeLinkStyle : inactiveLinkStyle}`}
+        >
+          <Phone size={20} />
+          <span className="font-medium text-sm">Contact Info</span>
         </NavLink>
       </nav>
 

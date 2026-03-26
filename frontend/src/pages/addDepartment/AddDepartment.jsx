@@ -47,7 +47,7 @@ function AddDep() {
 
       if (res.data.success) {
         toast.success("Department added successfully!");
-        navigate("/campus"); 
+        navigate("/adminHome/campus");
       } else {
         toast.error(res.data.msg);
       }

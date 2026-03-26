@@ -31,7 +31,7 @@ function GetUni() {
         <Faculity campus={campus} url={url} />
         <UniversityNews id={id} currentUniversity={currentUniversity}/>
         <ResourceHub uniId={id} />
-        <Contact />
+        <Contact contact={currentUniversity?.contact} />
       </div>
     </div>
   );

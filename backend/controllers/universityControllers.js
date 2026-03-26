@@ -75,6 +75,11 @@ export const updateUniversity = async (req, res) => {
       logo: req.file ? req.file.filename : uni.logo,
       generation: req.body.generation || uni.generation,
       region: req.body.region || uni.region,
+      contact: req.body.contact
+        ? typeof req.body.contact === "string"
+          ? JSON.parse(req.body.contact)
+          : req.body.contact
+        : uni.contact,
     };
 
     const university = await universityModel.findByIdAndUpdate(id, updateData, {
