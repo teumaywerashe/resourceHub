@@ -4,7 +4,8 @@ A full-stack web platform that connects students across Ethiopian universities. 
 
 ## Tech Stack
 
-**Frontend**
+### **Frontend**
+
 - React 19 + Vite
 - Tailwind CSS v4
 - React Router DOM v7
@@ -12,7 +13,7 @@ A full-stack web platform that connects students across Ethiopian universities. 
 - React Hot Toast
 - Lucide React / React Icons
 
-**Backend**
+### **Backend**
 - Node.js + Express 5
 - MongoDB + Mongoose
 - JWT Authentication
