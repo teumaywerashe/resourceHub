@@ -34,6 +34,7 @@ function UserLogin({ setShowLogin }) {
         : `${url}/api/admin/register`;
 
     const response = await axios.post(newUrl, data);
+    console.log(url,response.data)
     try {
       if (response.data.success) {
         setAdminToken(response.data.token);

@@ -32,7 +32,7 @@ export const registerAdmin = async(req, res) => {
             });
             const user = await newAdmin.save();
             const foundUniversity = await universityModel.findOne({
-                name: user.university,
+                $or: [{ _id: user.university }, { name: user.university }],
             });
             if (!foundUniversity) {
                 return res.json({ success: false, msg: "no univeristy found" });
@@ -52,15 +52,18 @@ export const loginAdmin = async(req, res) => {
     const { email, password } = req.body;
     try {
         const user = await adminModel.findOne({ email });
+        console.log(user)
         if (!user) {
+            
             return res.json({ success: false, msg: "no admin with this email" });
         }
         const correctPassword = await bcrypt.compare(password, user.password);
         if (!correctPassword) {
             return res.json({ success: false, msg: "wrong password" });
         }
+        // university field may store either an _id or a name string
         const foundUniversity = await universityModel.findOne({
-            name: user.university,
+            $or: [{ _id: user.university }, { name: user.university }],
         });
         if (!foundUniversity) {
             return res.json({ success: false, msg: "no univeristy found" });
